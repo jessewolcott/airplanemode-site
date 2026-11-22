@@ -215,7 +215,7 @@ setup_router() {
 }
 
 start_stack() {
-	say "Downloading and starting the apps (about 1.8 GB the first time, so this takes a while)"
+	say "Downloading and starting the apps (about 3.8 GB the first time on the R6S, much less on GL.iNet, so this takes a while)"
 	( cd "$DIR" && sh scripts/update.sh ) || die "starting the apps failed (see above). Fix it and run this again."
 }
 
