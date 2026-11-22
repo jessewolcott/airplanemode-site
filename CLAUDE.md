@@ -1,11 +1,11 @@
 # airplanemode-site: notes for Claude
 
-Public homepage + one-line installer for AirplaneMode. **Not hosted yet**: it's meant for
-its own server, which doesn't exist yet (GitHub Pages was tried and turned off on
-2026-11-21; don't re-enable it). Meanwhile the install command uses the raw GitHub URL
-of `install.sh`. The page builds its command from the address that serves it over https,
-so it needs no change once hosted; update the URL in `install.sh`'s comments and the
-platform README then. Serve it over **https only** (`curl | sh`).
+Public homepage + one-line installer for AirplaneMode. Served at **https://airplanemode.xin**
+by GitHub Pages under its own domain (platform decision 0019, superseding 0012): the `pages`
+job in `.github/workflows/check.yml` publishes `index.html`, `install.sh`, `assets/` and `CNAME`
+on pushes to `main` that pass the installer checks. The page builds its command from the
+address that serves it over https. Keep **Enforce HTTPS** on (`curl | sh`). The old raw GitHub
+URL of `install.sh` still works for anyone who copied it, so keep `main`'s copy working.
 Platform notes live in `../airplanemode/CLAUDE.md`. Read those first.
 
 - Plain static site: `index.html` (inline CSS/JS, no build), `assets/`, `install.sh`. Keep

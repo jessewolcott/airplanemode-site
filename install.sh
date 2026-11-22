@@ -1,10 +1,10 @@
 #!/bin/sh
 # AirplaneMode installer. Run it on the router, as root, while the router is online:
 #
-#   curl -fsSL https://raw.githubusercontent.com/jessewolcott/airplanemode-site/main/install.sh | sh
+#   curl -fsSL https://airplanemode.xin/install.sh | sh
 #
 # Options go after "sh -s --" (see usage() below for the list), for example:
-#   curl -fsSL https://raw.githubusercontent.com/jessewolcott/airplanemode-site/main/install.sh | sh -s -- --device glinet
+#   curl -fsSL https://airplanemode.xin/install.sh | sh -s -- --device glinet
 #
 # Why curl: OpenWrt's built-in wget (uclient-fetch + libustream-mbedtls, 24.10) fails the TLS
 # handshake with GitHub's servers, while curl on the same mbedTLS works. If curl is missing,
@@ -24,7 +24,7 @@ die()  { printf '\n\033[31mStopped:\033[0m %s\n' "$*" >&2; exit 1; }
 usage() {
 	cat <<'EOF'
 AirplaneMode installer. Run on the router as root, while it's online:
-  curl -fsSL https://raw.githubusercontent.com/jessewolcott/airplanemode-site/main/install.sh | sh -s -- [options]
+  curl -fsSL https://airplanemode.xin/install.sh | sh -s -- [options]
 
   --device NAME     nanopi-r6s or glinet (default: detected)
   --lan-ip ADDR     the router's LAN address (default: read from the router)

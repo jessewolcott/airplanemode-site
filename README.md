@@ -3,9 +3,8 @@
 # airplanemode-site
 
 The public homepage and one-line installer for [AirplaneMode](https://github.com/jessewolcott/airplanemode).
-**Not hosted yet:** it will run on its own server (none exists yet). Until then, the
-installer runs straight from this repo (command below), and the page can be previewed
-locally.
+Live at **https://airplanemode.xin** (GitHub Pages with its own domain, platform decision
+0019). CI publishes it on every push to `main` that passes the installer checks.
 
 | File | What it is |
 |---|---|
@@ -20,7 +19,7 @@ On the router, as root, while it's online:
 
 ```sh
 command -v curl >/dev/null || { opkg update && opkg install curl || apk add -U curl; } >/dev/null 2>&1
-curl -fsSL https://raw.githubusercontent.com/jessewolcott/airplanemode-site/main/install.sh | sh
+curl -fsSL https://airplanemode.xin/install.sh | sh
 ```
 
 It checks the router (OpenWrt, arm64, Docker with compose, online, free space, Wi-Fi radios),
