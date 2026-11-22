@@ -3,7 +3,8 @@
 # airplanemode-site
 
 The public homepage and one-line installer for [AirplaneMode](https://github.com/jessewolcott/airplanemode),
-served by GitHub Pages at **https://jessewolcott.github.io/airplanemode-site/**.
+served by GitHub Pages at **https://jessewolcott.com/airplanemode-site/**. (Use that
+address: `jessewolcott.github.io/airplanemode-site` redirects to it over plain http.)
 
 | File | What it is |
 |---|---|
@@ -18,7 +19,7 @@ On the router, as root, while it's online:
 
 ```sh
 command -v curl >/dev/null || { opkg update && opkg install curl || apk add -U curl; } >/dev/null 2>&1
-curl -fsSL https://jessewolcott.github.io/airplanemode-site/install.sh | sh
+curl -fsSL https://jessewolcott.com/airplanemode-site/install.sh | sh
 ```
 
 It checks the router (OpenWrt, arm64, Docker with compose, online, free space, Wi-Fi radios),

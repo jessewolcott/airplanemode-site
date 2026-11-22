@@ -1,7 +1,7 @@
 # airplanemode-site: notes for Claude
 
 Public homepage + one-line installer for AirplaneMode, on GitHub Pages
-(https://jessewolcott.github.io/airplanemode-site/, deployed from `main`, repo root).
+(https://jessewolcott.com/airplanemode-site/, deployed from `main`, repo root).
 Platform notes live in `../airplanemode/CLAUDE.md`. Read those first.
 
 - Plain static site: `index.html` (inline CSS/JS, no build), `assets/`, `install.sh`. Keep
