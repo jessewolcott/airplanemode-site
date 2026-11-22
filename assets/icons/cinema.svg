@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Cinema">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1c2129"/>
+      <stop offset="1" stop-color="#0d0f12"/>
+    </linearGradient>
+    <linearGradient id="ink" gradientUnits="userSpaceOnUse" x1="0" y1="96" x2="0" y2="430">
+      <stop offset="0" stop-color="#f29a8f"/>
+      <stop offset="1" stop-color="#e2685c"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <rect x="6" y="6" width="500" height="500" rx="106" fill="none" stroke="#2b313b" stroke-width="4"/>
+  <!-- a screen with a play button -->
+  <rect x="96" y="136" width="320" height="216" rx="34" fill="none" stroke="#e2685c" stroke-width="28" opacity=".75"/>
+  <path d="M226 196v96l84-48z" fill="url(#ink)" stroke="url(#ink)" stroke-width="16" stroke-linejoin="round"/>
+  <path d="M176 400h160" stroke="#e2685c" stroke-width="28" stroke-linecap="round" opacity=".75"/>
+</svg>

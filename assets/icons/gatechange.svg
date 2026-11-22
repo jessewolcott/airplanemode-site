@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Gate Change">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1c2129"/>
+      <stop offset="1" stop-color="#0d0f12"/>
+    </linearGradient>
+    <linearGradient id="ink" gradientUnits="userSpaceOnUse" x1="0" y1="96" x2="0" y2="430">
+      <stop offset="0" stop-color="#9fdcff"/>
+      <stop offset="1" stop-color="#5bb8f0"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <rect x="6" y="6" width="500" height="500" rx="106" fill="none" stroke="#2b313b" stroke-width="4"/>
+  <!-- a card laid down behind, a boarding-pass card on top, and the arrow of a gate change -->
+  <rect x="104" y="150" width="170" height="250" rx="26" transform="rotate(-14 189 275)" fill="none" stroke="#5bb8f0" stroke-width="22" opacity=".45"/>
+  <rect x="214" y="120" width="190" height="280" rx="28" fill="none" stroke="url(#ink)" stroke-width="24"/>
+  <path d="M214 314h190" stroke="#5bb8f0" stroke-width="12" stroke-dasharray="4 22" stroke-linecap="round"/>
+  <path d="M268 250c0-44 28-72 68-72h18" fill="none" stroke="url(#ink)" stroke-width="26" stroke-linecap="round"/>
+  <path d="M336 146l40 32-40 32" fill="none" stroke="url(#ink)" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

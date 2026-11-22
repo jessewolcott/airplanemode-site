@@ -11,6 +11,9 @@ Platform notes live in `../airplanemode/CLAUDE.md`. Read those first.
 - Plain static site: `index.html` (inline CSS/JS, no build), `assets/`, `install.sh`. Keep
   the look in step with the box's landing page (`../airplanemode/portal/index.html`: dark,
   amber `#f2b34b`). Screenshots and icon are copies; refresh them when the platform's change.
+- The **apps** section mirrors the platform's `portal/apps.json`: same names, descriptions and
+  categories, icons copied into `assets/icons/`, each card linking to the app's repo. When an
+  app is added or its description changes there, update the card here too.
 - `install.sh` must stay POSIX sh that runs under OpenWrt's busybox ash, and stays a **thin
   wrapper**: router changes belong in the platform's `scripts/router-setup.sh`, not here.
   Everything runs from `main()` at the bottom (a half-downloaded script does nothing).

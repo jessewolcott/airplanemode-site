@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="QuickShot">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1c2129"/>
+      <stop offset="1" stop-color="#0d0f12"/>
+    </linearGradient>
+    <linearGradient id="ink" gradientUnits="userSpaceOnUse" x1="0" y1="96" x2="0" y2="430">
+      <stop offset="0" stop-color="#c3b0ff"/>
+      <stop offset="1" stop-color="#9b7bff"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <rect x="6" y="6" width="500" height="500" rx="106" fill="none" stroke="#2b313b" stroke-width="4"/>
+  <!-- a lightning bolt in a tall phone frame, swiping up -->
+  <rect x="148" y="84" width="216" height="344" rx="40" fill="none" stroke="#9b7bff" stroke-width="26" opacity=".7"/>
+  <path d="M276 140L196 270h56l-20 104 84-140h-58z" fill="url(#ink)" stroke="url(#ink)" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M404 220l24-24 24 24M428 200v116" fill="none" stroke="#9b7bff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
+</svg>

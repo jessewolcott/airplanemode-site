@@ -168,7 +168,7 @@
   .apps { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
   a.app { display: flex; gap: 14px; padding: 18px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; color: inherit; text-decoration: none; transition: border-color .15s, transform .15s; }
   a.app:hover { border-color: var(--accent); transform: translateY(-1px); }
-  .mono { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; font: 700 1rem var(--sans); color: #111; flex: none; }
+  .app .ico { width: 46px; height: 46px; border-radius: 12px; flex: none; }
   .app h3 { margin: 0 0 3px; font-size: 1rem; }
   .app p { margin: 0; color: var(--dim); font-size: .88rem; }
   .app .tag { display: inline-block; margin-top: 8px; font: .68rem var(--mono); color: var(--dim); border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px; }
@@ -231,7 +231,7 @@
         <div class="feature">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 10l3 3-3 3M13 16h3"/></svg>
           <h3>Apps with no internet</h3>
-          <p>Text adventures, file sharing, an offline Wikivoyage, and a language model built into the box.</p>
+          <p>Card games with friends on the hotspot, travel trivia, text adventures, films, file sharing, an offline Wikivoyage, and a language model built into the box.</p>
         </div>
         <div class="feature">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
@@ -380,19 +380,47 @@
     <div class="wrap">
       <div class="eyebrow">Apps on the box</div>
       <h2 class="title">Things to do at 35,000 feet</h2>
-      <p class="sub">Each app is its own open source project and plugs in as a container. More are planned.</p>
+      <p class="sub">Ten apps so far. Each is its own open source project and plugs in as a container.</p>
       <div class="apps">
         <a class="app" href="https://github.com/jessewolcott/airplanemode-darklight">
-          <span class="mono" style="background:#f2b34b">DL</span>
-          <span><h3>The Dark Light</h3><p>A storm, a dark lighthouse, a ship heading for the rocks. A text adventure with five endings, narrated by the on-board model.</p><span class="tag">Games · uses the model</span></span>
+          <img class="ico" src="assets/icons/darklight.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>The Dark Light</h3><p>Text adventures narrated by the on-board model, alone or as a party from everyone's phones: a dark lighthouse, a frozen mountain pass and a fog-bound marsh.</p><span class="tag">Games · uses the model</span></span>
         </a>
-        <a class="app" href="https://github.com/jessewolcott/airplanemode-drop">
-          <span class="mono" style="background:#5fb8c9">Dp</span>
-          <span><h3>Drop</h3><p>Send files and notes between every phone, tablet and laptop on the hotspot, and keep movies for the flight.</p><span class="tag">Tools</span></span>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-gatechange">
+          <img class="ico" src="assets/icons/gatechange.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>Gate Change</h3><p>A fast colour-and-number card game for 2 to 8 players. Play friends on the hotspot from every phone, or bots.</p><span class="tag">Games</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-passport">
+          <img class="ico" src="assets/icons/passport.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>Passport</h3><p>A travel deck-building card game. Collect stamps and visas against friends on the hotspot, or bots.</p><span class="tag">Games</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-wayfarer">
+          <img class="ico" src="assets/icons/wayfarer.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>Wayfarer</h3><p>Travel trivia from the Travel Guide: capitals, currencies, airport codes, phrases. Daily flight, endless mode, high scores.</p><span class="tag">Games</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-doom">
+          <img class="ico" src="assets/icons/doom.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>Doom</h3><p>The classic shooter, running on your device with touch controls. Freedoom, the Layover airport episode, or your own WADs from Drop.</p><span class="tag">Games</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-cinema">
+          <img class="ico" src="assets/icons/cinema.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>Cinema</h3><p>Watch the films and shows, and play the music, loaded onto Drop. Every device picks up where it left off.</p><span class="tag">Entertainment</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-quickshot">
+          <img class="ico" src="assets/icons/quickshot.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>QuickShot</h3><p>An endless feed of the short videos in Drop's QuickShot folder. Swipe, like, comment.</p><span class="tag">Entertainment</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-couch">
+          <img class="ico" src="assets/icons/couch.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>The Couch</h3><p>A therapist simulator: talk things over with a Stoic or a Socialist, played by the on-board model. Not real therapy.</p><span class="tag">Entertainment · uses the model</span></span>
         </a>
         <a class="app" href="https://github.com/jessewolcott/airplanemode-guide">
-          <span class="mono" style="background:#5ec4b6">TG</span>
+          <img class="ico" src="assets/icons/guide.svg" alt="" width="46" height="46" loading="lazy">
           <span><h3>Travel Guide</h3><p>All of Wikivoyage, offline. Look up any destination, or ask a question and get an answer from the guide.</p><span class="tag">Travel · uses the model</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-drop">
+          <img class="ico" src="assets/icons/drop.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>Drop</h3><p>Send files and notes between every phone, tablet and laptop on the hotspot, and keep movies for the flight.</p><span class="tag">Tools</span></span>
         </a>
       </div>
     </div>

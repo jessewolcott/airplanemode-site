@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Drop">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1c2129"/>
+      <stop offset="1" stop-color="#0d0f12"/>
+    </linearGradient>
+    <linearGradient id="ink" gradientUnits="userSpaceOnUse" x1="0" y1="96" x2="0" y2="430">
+      <stop offset="0" stop-color="#8fd3df"/>
+      <stop offset="1" stop-color="#5fb8c9"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <rect x="6" y="6" width="500" height="500" rx="106" fill="none" stroke="#2b313b" stroke-width="4"/>
+  <!-- something dropping into a shared tray -->
+  <path d="M256 104v192" stroke="url(#ink)" stroke-width="40" stroke-linecap="round"/>
+  <path d="M172 222l84 84 84-84" fill="none" stroke="url(#ink)" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M120 300v70a36 36 0 0 0 36 36h200a36 36 0 0 0 36-36v-70" fill="none" stroke="#5fb8c9" stroke-width="32" stroke-linecap="round" stroke-linejoin="round" opacity=".75"/>
+</svg>

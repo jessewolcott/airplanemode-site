@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Travel Guide">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1c2129"/>
+      <stop offset="1" stop-color="#0d0f12"/>
+    </linearGradient>
+    <linearGradient id="ink" gradientUnits="userSpaceOnUse" x1="0" y1="96" x2="0" y2="430">
+      <stop offset="0" stop-color="#8ee0d4"/>
+      <stop offset="1" stop-color="#5ec4b6"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <rect x="6" y="6" width="500" height="500" rx="106" fill="none" stroke="#2b313b" stroke-width="4"/>
+  <!-- a compass -->
+  <circle cx="256" cy="256" r="160" fill="none" stroke="#5ec4b6" stroke-width="28" opacity=".8"/>
+  <path d="M256 128v28M256 356v28M128 256h28M356 256h28" stroke="#5ec4b6" stroke-width="20" stroke-linecap="round" opacity=".6"/>
+  <path d="M332 180l-48 104-104 48 48-104z" fill="url(#ink)"/>
+  <circle cx="256" cy="256" r="16" fill="#0d0f12"/>
+</svg>
