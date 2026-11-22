@@ -91,7 +91,10 @@ valid_ip() {
 	case "$1" in
 		*[!0-9.]* | *..* | .* | *.) return 1 ;;
 	esac
-	[ "$(echo "$1" | tr -cd . | wc -c)" -eq 3 ]
+	[ "$(echo "$1" | tr -cd . | wc -c)" -eq 3 ] || return 1
+	for part in $(echo "$1" | tr . ' '); do
+		[ "${#part}" -le 3 ] && [ "$part" -le 255 ] || return 1
+	done
 }
 
 preflight() {
@@ -157,6 +160,13 @@ fetch_code() {
 		if git -C "$DIR" pull --ff-only -q; then ok "updated"; else warn "couldn't update; using the copy already there"; fi
 		return
 	fi
+	if [ -f "$DIR/.snapshot" ]; then
+		# An earlier install without git: unpack a fresh snapshot over it (.env and data volumes stay).
+		fetch "$TARBALL/$BRANCH" | tar -xz -C "$DIR" --strip-components=1 || die "download failed."
+		date >"$DIR/.snapshot"
+		ok "updated the snapshot"
+		return
+	fi
 	[ -e "$DIR" ] && [ -n "$(ls -A "$DIR" 2>/dev/null)" ] && die "$DIR exists and isn't an AirplaneMode checkout. Move it or use --dir."
 	if ! command -v git >/dev/null 2>&1; then
 		if pkg_install git git-http; then ok "installed git"; else warn "couldn't install git; downloading a snapshot instead"; fi
@@ -168,6 +178,7 @@ fetch_code() {
 		# No git: unpack a snapshot. update.sh then can't pull, so re-run this installer to update.
 		mkdir -p "$DIR"
 		fetch "$TARBALL/$BRANCH" | tar -xz -C "$DIR" --strip-components=1 || die "download failed."
+		date >"$DIR/.snapshot"     # marks a no-git install, so a re-run knows it may update it
 		ok "downloaded a snapshot (re-run this installer to update later)"
 	fi
 }
