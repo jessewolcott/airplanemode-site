@@ -1,0 +1,10 @@
+#!/bin/sh
+# test stub: pretend Docker works; "compose exec" (router API probe) fails
+echo "docker $*" >>/tmp/docker.log
+case "$*" in
+  "info -f"*) echo /opt/docker ;;
+  "version -f"*) echo 27.0.0 ;;
+  "compose exec"*) exit 1 ;;
+  "compose config --services") echo proxy; echo admin ;;
+esac
+exit 0

@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0d0f12">
+<title>AirplaneMode</title>
+<meta name="description" content="A travel router that brings its own apps. Shares one hotel sign-in with all your devices, reconnects by itself, and runs games, tools and a small language model with no internet at all.">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:title" content="AirplaneMode">
+<meta property="og:description" content="A travel router that brings its own apps.">
+<meta property="og:image" content="assets/landing-online.png">
+<style>
+  :root {
+    --bg: #0d0f12; --panel: #14171c; --panel2: #1a1e24; --line: #252a32; --line2: #323843;
+    --ink: #e4dfd3; --dim: #8f8c84; --accent: #f2b34b; --accent-ink: #1a1408;
+    --good: #7bc47f; --warn-bg: #2a2416; --warn-line: #5b4a2c;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 var(--sans); -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent); }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+  code, kbd { font-family: var(--mono); font-size: .88em; background: var(--panel2); border: 1px solid var(--line); border-radius: 4px; padding: 1px 5px; overflow-wrap: anywhere; }
+
+  /* ---------- header ---------- */
+  header.top { position: sticky; top: 0; z-index: 10; background: #0d0f12e6; backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 58px; gap: 12px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 700; font-size: 1.1rem; }
+  .brand img { width: 30px; height: 30px; }
+  .brand span { color: var(--accent); }
+  nav { display: flex; gap: 4px; }
+  nav a { color: var(--dim); text-decoration: none; font-size: .9rem; padding: 6px 10px; border-radius: 6px; }
+  nav a:hover { color: var(--ink); background: var(--panel); }
+  nav a.gh { border: 1px solid var(--line); font-family: var(--mono); font-size: .8rem; }
+  @media (max-width: 560px) { nav a.hide-sm { display: none; } }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 64px 0 40px; display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; }
+  .eyebrow { font: 500 .72rem var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+  .hero h1 { font-size: clamp(2.1rem, 5vw, 3.3rem); line-height: 1.08; margin: 12px 0 16px; letter-spacing: -.02em; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero p.lead { color: #cfc9bc; font-size: 1.1rem; margin: 0 0 26px; max-width: 34em; }
+  .btns { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; font: 600 .95rem var(--sans); padding: 11px 18px; border-radius: 9px; border: 1px solid transparent; cursor: pointer; text-decoration: none; transition: transform .15s, background .15s, border-color .15s; }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); }
+  .btn.primary:hover { transform: translateY(-1px); background: #f7c873; }
+  .btn.ghost { color: var(--ink); border-color: var(--line2); background: transparent; }
+  .btn.ghost:hover { border-color: var(--dim); }
+  .note { margin-top: 18px; font-size: .82rem; color: var(--dim); }
+  .note b { color: var(--accent); font-weight: 600; }
+  .phones { position: relative; height: 470px; }
+  body { overflow-x: clip; }
+  .phones img { position: absolute; width: 215px; border-radius: 22px; border: 6px solid #1f242c; box-shadow: 0 30px 60px -20px #000c, 0 0 0 1px #2b313b; background: var(--panel); }
+  .phones img:nth-child(1) { left: 0; top: 50px; transform: rotate(-5deg); }
+  .phones img:nth-child(2) { left: 50%; margin-left: -107px; top: 0; z-index: 2; }
+  .phones img:nth-child(3) { right: 0; top: 50px; transform: rotate(5deg); }
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; padding-top: 40px; }
+    .phones { height: 380px; max-width: 460px; width: 100%; margin: 0 auto; }
+    .phones img { width: 170px; }
+    .phones img:nth-child(2) { margin-left: -85px; }
+  }
+  @media (max-width: 420px) { .phones { height: 320px; } .phones img { width: 140px; } .phones img:nth-child(2) { margin-left: -70px; } }
+
+  /* ---------- sections ---------- */
+  section.block { padding: 56px 0; border-top: 1px solid var(--line); }
+  h2.title { font-size: clamp(1.5rem, 3vw, 2rem); margin: 8px 0 10px; letter-spacing: -.01em; }
+  p.sub { color: var(--dim); margin: 0 0 28px; max-width: 42em; }
+  .features { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  .feature { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+  .feature svg { width: 26px; height: 26px; color: var(--accent); }
+  .feature h3 { font-size: 1rem; margin: 10px 0 4px; }
+  .feature p { margin: 0; color: var(--dim); font-size: .92rem; }
+
+  /* ---------- setup ---------- */
+  .devices { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .device { text-align: left; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; color: var(--ink); cursor: pointer; font: inherit; transition: border-color .15s, background .15s; }
+  .device:hover { border-color: var(--line2); }
+  .device[aria-selected="true"] { border-color: var(--accent); background: #1d1a13; box-shadow: 0 0 0 3px #f2b34b1a; }
+  .device .name { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-weight: 700; font-size: 1.05rem; }
+  .pill { font: 600 .66rem var(--mono); letter-spacing: .08em; text-transform: uppercase; border-radius: 99px; padding: 2px 8px; border: 1px solid var(--line2); color: var(--dim); white-space: nowrap; }
+  .device[aria-selected="true"] .pill.full { color: var(--accent-ink); background: var(--accent); border-color: var(--accent); }
+  .device .desc { color: var(--dim); font-size: .88rem; margin-top: 4px; }
+  @media (max-width: 600px) { .devices { grid-template-columns: 1fr; } }
+
+  .progress { display: flex; align-items: center; gap: 12px; margin: 0 0 16px; font: .8rem var(--mono); color: var(--dim); }
+  .bar { flex: 1; height: 4px; background: var(--line); border-radius: 99px; overflow: hidden; }
+  .bar i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .3s; }
+
+  ol.steps { list-style: none; margin: 0; padding: 0; counter-reset: step; }
+  ol.steps > li { position: relative; padding: 0 0 26px 54px; counter-increment: step; }
+  ol.steps > li::before { content: counter(step); position: absolute; left: 0; top: 0; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font: 700 .9rem var(--mono); background: var(--panel2); border: 1px solid var(--line2); color: var(--ink); transition: background .2s, color .2s; }
+  ol.steps > li::after { content: ""; position: absolute; left: 17px; top: 40px; bottom: 6px; width: 1px; background: var(--line); }
+  ol.steps > li:last-child::after { display: none; }
+  ol.steps > li.done::before { content: "✓"; background: var(--good); border-color: var(--good); color: #0d1a0e; }
+  .step-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; min-height: 34px; }
+  .step-head h3 { margin: 4px 0 0; font-size: 1.08rem; }
+  .check { flex: none; display: flex; align-items: center; gap: 6px; font-size: .78rem; color: var(--dim); cursor: pointer; user-select: none; padding: 4px 0; }
+  .check input { accent-color: var(--good); width: 16px; height: 16px; margin: 0; }
+  .step-body { color: #cfc9bc; font-size: .95rem; margin-top: 6px; }
+  .step-body p { margin: 0 0 10px; }
+  .step-body ul, .step-body ol { margin: 0 0 10px; padding-left: 20px; }
+  .step-body li { margin: 3px 0; }
+  li.done .step-body { opacity: .55; }
+  .callout { background: var(--warn-bg); border: 1px solid var(--warn-line); border-radius: 10px; padding: 12px 14px; font-size: .9rem; color: #d8cfbd; margin: 10px 0; }
+  .callout b { color: var(--accent); }
+  .leds { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: .88rem; margin: 8px 0 12px; }
+  .led { font: .8rem var(--mono); color: var(--dim); white-space: nowrap; }
+  .led i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #e05a4a; margin-right: 6px; vertical-align: 1px; }
+  .led i.slow { animation: blink 1.6s steps(1) infinite; }
+  .led i.fast { animation: blink .35s steps(1) infinite; }
+  .led i.g { background: var(--good); }
+  @keyframes blink { 50% { opacity: .15; } }
+  @media (prefers-reduced-motion: reduce) { .led i { animation: none !important; } html { scroll-behavior: auto; } }
+  table.parts { width: 100%; border-collapse: collapse; font-size: .9rem; margin: 4px 0 10px; }
+  table.parts td { padding: 7px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.parts td:first-child { padding-right: 14px; color: var(--ink); font-weight: 600; }
+  table.parts td:last-child { color: var(--dim); }
+  @media (max-width: 520px) { table.parts td { display: block; border: 0; padding: 0; } table.parts tr { display: block; padding: 7px 0; border-bottom: 1px solid var(--line); } }
+
+  /* ---------- config tool ---------- */
+  .tool { background: var(--panel); border: 1px solid var(--line2); border-radius: 14px; overflow: hidden; margin: 8px 0 4px; }
+  .tool-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line); background: var(--panel2); }
+  .tool-head b { font-size: .9rem; }
+  .tool-head small { color: var(--dim); font-family: var(--mono); font-size: .72rem; }
+  .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 18px; padding: 16px; }
+  @media (max-width: 640px) { .tool-grid { grid-template-columns: 1fr; } }
+  .field label { display: block; font-size: .8rem; color: var(--dim); margin-bottom: 5px; }
+  .field input[type=text] { width: 100%; background: var(--bg); color: var(--ink); border: 1px solid var(--line2); border-radius: 8px; padding: 9px 11px; font: .92rem var(--mono); }
+  .field input[type=text]:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px #f2b34b22; }
+  .field input[aria-invalid="true"] { border-color: #e07a6a; }
+  .field .hint { font-size: .76rem; color: var(--dim); margin-top: 4px; }
+  .toggle { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; font-size: .9rem; }
+  .toggle input { accent-color: var(--accent); width: 17px; height: 17px; margin: 2px 0 0; flex: none; }
+  .toggle small { display: block; color: var(--dim); font-size: .78rem; }
+  details.adv { grid-column: 1 / -1; border-top: 1px dashed var(--line); padding-top: 10px; }
+  details.adv summary { cursor: pointer; color: var(--dim); font-size: .85rem; }
+  details.adv .tool-grid { padding: 12px 0 0; }
+  .cmd-label { padding: 0 16px; font-size: .8rem; color: var(--dim); display: flex; justify-content: space-between; gap: 10px; }
+  .cmd { position: relative; margin: 6px 16px 12px; background: #090a0c; border: 1px solid var(--line2); border-radius: 10px; }
+  .cmd pre { margin: 0; padding: 14px 92px 14px 14px; font: .86rem/1.6 var(--mono); color: #f1ead9; white-space: pre-wrap; overflow-wrap: anywhere; }
+  @media (max-width: 560px) {
+    ol.steps > li { padding-left: 44px; }
+    ol.steps > li::before { width: 30px; height: 30px; }
+    ol.steps > li::after { left: 15px; }
+    .tool { margin-left: -44px; }
+    .cmd { margin: 6px 10px 12px; }
+    .cmd pre { padding: 46px 12px 12px; font-size: .8rem; }
+    .cmd-label { padding: 0 10px; }
+  }
+  .cmd pre .p { color: var(--good); user-select: none; }
+  .cmd pre .o { color: var(--accent); }
+  .cmd pre .d { color: var(--dim); }
+  .copy { position: absolute; top: 8px; right: 8px; font: 600 .8rem var(--sans); padding: 7px 12px; border-radius: 7px; border: 1px solid var(--line2); background: var(--panel2); color: var(--ink); cursor: pointer; }
+  .copy:hover { border-color: var(--dim); }
+  .copy.ok { background: var(--good); border-color: var(--good); color: #0d1a0e; }
+  .does { padding: 0 16px 16px; }
+  .does summary { cursor: pointer; color: var(--dim); font-size: .85rem; }
+  .does ul { margin: 8px 0 0; padding-left: 20px; font-size: .88rem; color: #cfc9bc; }
+  .does li { margin: 3px 0; }
+
+  /* ---------- apps ---------- */
+  .apps { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  a.app { display: flex; gap: 14px; padding: 18px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; color: inherit; text-decoration: none; transition: border-color .15s, transform .15s; }
+  a.app:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .mono { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; font: 700 1rem var(--sans); color: #111; flex: none; }
+  .app h3 { margin: 0 0 3px; font-size: 1rem; }
+  .app p { margin: 0; color: var(--dim); font-size: .88rem; }
+  .app .tag { display: inline-block; margin-top: 8px; font: .68rem var(--mono); color: var(--dim); border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px; }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--dim); font-size: .82rem; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  footer a { color: var(--dim); }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#"><img src="assets/icon.svg" alt="" width="30" height="30"><b style="font-weight:inherit">Airplane<span>Mode</span></b></a>
+    <nav>
+      <a href="#features" class="hide-sm">Features</a>
+      <a href="#setup">Set up</a>
+      <a href="#apps" class="hide-sm">Apps</a>
+      <a class="gh" href="https://github.com/jessewolcott/airplanemode">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <div>
+      <div class="eyebrow">Open source travel router</div>
+      <h1>Your own Wi-Fi, everywhere. <em>Apps that fly offline.</em></h1>
+      <p class="lead">AirplaneMode turns a small router into a private hotspot. It signs in to the hotel Wi-Fi once for every device, reconnects by itself, and runs games, tools and a small language model with no internet at all.</p>
+      <div class="btns">
+        <a class="btn primary" href="#setup">Set one up <span aria-hidden="true">→</span></a>
+        <a class="btn ghost" href="https://github.com/jessewolcott/airplanemode">Read the code</a>
+      </div>
+      <p class="note"><b>Early days.</b> Everything is tested against real OpenWrt in Docker; the first hardware is on its way.</p>
+    </div>
+    <div class="phones" aria-hidden="true">
+      <img src="assets/landing-signin.png" alt="" loading="lazy">
+      <img src="assets/landing-online.png" alt="">
+      <img src="assets/guide-ask.png" alt="" loading="lazy">
+    </div>
+  </div>
+
+  <section class="block" id="features">
+    <div class="wrap">
+      <div class="eyebrow">What it does</div>
+      <h2 class="title">Built for hotels, airports and planes</h2>
+      <p class="sub">Everything runs on the box. Your devices join one network you own, and the box deals with the rest.</p>
+      <div class="features">
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1"/><path d="M2 9a14 14 0 0 1 20 0"/></svg>
+          <h3>One sign-in for everyone</h3>
+          <p>One person accepts the hotel's terms page and every phone, laptop and tablet is online. No paying per device.</p>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>
+          <h3>Reconnects by itself</h3>
+          <p>Remembers networks and rejoins them. Plug in the room's Ethernet cable and it's used first.</p>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 10l3 3-3 3M13 16h3"/></svg>
+          <h3>Apps with no internet</h3>
+          <p>Text adventures, file sharing, an offline Wikivoyage, and a language model built into the box.</p>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+          <h3>Your home VPN</h3>
+          <p>Paste a WireGuard config and everything goes through it. The hotel only sees encrypted traffic.</p>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg>
+          <h3>Devices and data use</h3>
+          <p>See who's connected and how much data each network used. Pause the tablet streaming all night.</p>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          <h3>Least privilege</h3>
+          <p>The admin panel controls the router through a login limited to Wi-Fi settings. Never root.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="setup">
+    <div class="wrap">
+      <div class="eyebrow">Set up</div>
+      <h2 class="title">From box to hotspot in about half an hour</h2>
+      <p class="sub">Pick your router. Tick the steps off as you go: this page remembers where you are.</p>
+
+      <div class="devices" role="tablist" aria-label="Router">
+        <button class="device" role="tab" id="tab-r6s" aria-controls="guide-r6s" aria-selected="true" data-device="nanopi-r6s">
+          <span class="name">NanoPi R6S <span class="pill full">Full</span></span>
+          <span class="desc">Everything, including the on-board language model. Needs two USB Wi-Fi adapters.</span>
+        </button>
+        <button class="device" role="tab" id="tab-glinet" aria-controls="guide-glinet" aria-selected="false" data-device="glinet">
+          <span class="name">GL.iNet travel router <span class="pill">Lite</span></span>
+          <span class="desc">arm64 models with 1 GB RAM (e.g. Flint 2). Built-in Wi-Fi, no language model.</span>
+        </button>
+      </div>
+
+      <div class="progress"><span id="progText">0 of 0 done</span><span class="bar"><i id="progBar"></i></span><button class="check" id="reset" type="button" style="background:none;border:0;font:inherit;color:inherit">reset</button></div>
+
+      <!-- ===================== NanoPi R6S ===================== -->
+      <div class="guide" id="guide-r6s" role="tabpanel" aria-labelledby="tab-r6s" data-device="nanopi-r6s">
+        <ol class="steps">
+          <li data-step="r6s-parts">
+            <div class="step-head"><h3>Get the parts</h3><label class="check"><input type="checkbox"> done</label></div>
+            <div class="step-body">
+              <table class="parts">
+                <tr><td>NanoPi R6S, 8 GB</td><td>The box. Get the metal case: it's the heatsink.</td></tr>
+                <tr><td>2 × USB Wi-Fi adapter</td><td>The R6S has no Wi-Fi. MediaTek only: e.g. ALFA AWUS036ACM (MT7612U) for the hotspot, AWUS036ACHM (MT7610U) for the hotel network.</td></tr>
+                <tr><td>5 V / 3 A USB-C power</td><td>Or a USB-C PD power bank.</td></tr>
+                <tr><td>microSD card, 8 GB+</td><td>Only for flashing, once.</td></tr>
+                <tr><td>Short USB extension</td><td>Optional. Keeps one adapter away from the case.</td></tr>
+              </table>
+            </div>
+          </li>
+          <li data-step="r6s-flash">
+            <div class="step-head"><h3>Flash FriendlyWrt to the eMMC</h3><label class="check"><input type="checkbox"> done</label></div>
+            <div class="step-body">
+              <p>FriendlyWrt is FriendlyElec's OpenWrt, with Docker built in.</p>
+              <ol>
+                <li>Open <a href="http://download.friendlyelec.com/NanoPiR6S" rel="noopener">FriendlyElec's download page</a> → <code>01_Official images</code> → <code>02_SD-to-eMMC images</code>, and download the file named like <code>rk3588-eflasher-friendlywrt-…-docker-….img.gz</code>. <b>Pick the one with <code>docker</code> in its name.</b></li>
+                <li>Write it to the microSD card with <a href="https://etcher.balena.io/" rel="noopener">balenaEtcher</a> (it takes the <code>.gz</code> directly). On Windows, FriendlyElec's own tool is Win32 Disk Imager: unzip the image first.</li>
+                <li>Put the card in the R6S and power it on. It installs to the eMMC by itself. Watch the red <b>SYS</b> light:</li>
+              </ol>
+              <div class="leds">
+                <span class="led"><i class="fast"></i>fast blink</span><span>installing, takes a few minutes</span>
+                <span class="led"><i class="slow"></i><i class="g"></i>slow + green</span><span>done: SYS blinks slowly and the WAN/LAN lights stay on</span>
+              </div>
+              <ol start="4"><li>Unplug the power, <b>take the card out</b>, and power on again. It now boots from the eMMC.</li></ol>
+            </div>
+          </li>
+          <li data-step="r6s-login">
+            <div class="step-head"><h3>Sign in once and get it online</h3><label class="check"><input type="checkbox"> done</label></div>
+            <div class="step-body">
+              <ol>
+                <li>Plug your laptop into the port marked <b>LAN</b>, and a cable from your home router into the port marked <b>WAN</b>.</li>
+                <li>Open <a href="http://192.168.2.1/" rel="noopener">http://192.168.2.1</a>. Sign in as <code>root</code> with the password <code>password</code> (on some versions, leave it empty).</li>
+                <li>Set your own root password: <b>System → Administration</b>. It stays yours; AirplaneMode gets its own, limited login.</li>
+              </ol>
+            </div>
+          </li>
+          <li data-step="r6s-adapters">
+            <div class="step-head"><h3>Plug in the Wi-Fi adapters</h3><label class="check"><input type="checkbox"> done</label></div>
+            <div class="step-body">
+              <p>Put the hotspot adapter (AWUS036ACM) in the blue <b>USB 3.0</b> port and the other in the USB 2.0 port. In LuCI, <b>Network → Wireless</b> should now show two radios. No need to set them up: the admin panel does it.</p>
+            </div>
+          </li>
+          <li data-step="r6s-install">
+            <div class="step-head"><h3>Run the installer</h3><label class="check"><input type="checkbox"> done</label></div>
+            <div class="step-body">
+              <p>Open a terminal (PowerShell on Windows, Terminal on a Mac), connect with <code class="ssh">ssh root@192.168.2.1</code>, then paste this. It checks the router, installs everything (about 1.8 GB), and prints your admin password at the end.</p>
+              <div class="tool-slot"></div>
+            </div>
+          </li>
+          <li data-step="r6s-done">
+            <div class="step-head"><h3>Name your hotspot</h3><label class="check"><input type="checkbox"> done</label></div>
+            <div class="step-body">
+              <p>Open <a class="admin-link" href="http://airplane.mode:8080/admin/" rel="noopener">http://airplane.mode:8080/admin/</a>, sign in with the password the installer printed, and give your hotspot a name and password. Your devices remember it from then on, everywhere you go.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- ===================== GL.iNet ===================== -->
+      <div class="guide" id="guide-glinet" role="tabpanel" aria-labelledby="tab-glinet" data-device="glinet" hidden>
+        <div class="callout"><b>Not tried on a GL.iNet yet.</b> The software side is the same OpenWrt API, but installing Docker on GL.iNet firmware is the part most likely to need adjusting. Reports welcome.</div>
+        <ol class="steps">
+          <li data-step="gl-model">
+            <div class="step-head"><h3>Check your model</h3><label class="check"><input type="checkbox"> done</label></div>
+            <div class="step-body">
+              <p>You need an <b>arm64</b> GL.iNet (for example Flint 2 / GL-MT6000) with <b>1 GB of RAM</b>, plus a USB stick or SD card of 8 GB or more for Docker. Older MIPS models won't work.</p>
+            </div>
+          </li>
+          <li data-step="gl-ssh">
+            <div class="step-head"><h3>Get online and open a shell</h3><label class="check"><input type="checkbox"> done</label></div>
+            <div class="step-body">
+              <p>Connect the router to the internet in its admin panel (<a href="http://192.168.8.1/" rel="noopener">http://192.168.8.1</a>). Then, from a terminal: <code class="ssh">ssh root@192.168.8.1</code>, using the admin panel's password.</p>
+            </div>
+          </li>
+          <li data-step="gl-docker">
+            <div class="step-head"><h3>Install Docker</h3><label class="check"><input type="checkbox"> done</label></div>
+            <div class="step-body">
+              <p>Mount your USB or SD storage (GL.iNet admin panel → <b>Applications → Network Storage</b>), then:</p>
+              <div class="cmd"><pre><span class="p">#</span> opkg update && opkg install dockerd docker docker-compose</pre><button class="copy" type="button">Copy</button></div>
+              <p>Point Docker's data at the USB/SD storage (<code>data_root</code> in <code>/etc/config/dockerd</code>) and start it with <code>/etc/init.d/dockerd restart</code>. Package names can differ between firmware versions.</p>
+            </div>
+          </li>
+          <li data-step="gl-install">
+            <div class="step-head"><h3>Run the installer</h3><label class="check"><input type="checkbox"> done</label></div>
+            <div class="step-body">
+              <p>Paste this into the same shell. It checks the router, installs everything, and prints your admin password at the end.</p>
+              <div class="tool-slot"></div>
+            </div>
+          </li>
+          <li data-step="gl-done">
+            <div class="step-head"><h3>Name your hotspot, and pick one repeater</h3><label class="check"><input type="checkbox"> done</label></div>
+            <div class="step-body">
+              <p>Open <a class="admin-link" href="http://airplane.mode:8080/admin/" rel="noopener">http://airplane.mode:8080/admin/</a> and sign in. GL.iNet has its own repeater page that also edits the upstream Wi-Fi, so use either it or AirplaneMode's <b>Internet source</b> panel, not both.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="apps">
+    <div class="wrap">
+      <div class="eyebrow">Apps on the box</div>
+      <h2 class="title">Things to do at 35,000 feet</h2>
+      <p class="sub">Each app is its own open source project and plugs in as a container. More are planned.</p>
+      <div class="apps">
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-darklight">
+          <span class="mono" style="background:#f2b34b">DL</span>
+          <span><h3>The Dark Light</h3><p>A storm, a dark lighthouse, a ship heading for the rocks. A text adventure with five endings, narrated by the on-board model.</p><span class="tag">Games · uses the model</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-drop">
+          <span class="mono" style="background:#5fb8c9">Dp</span>
+          <span><h3>Drop</h3><p>Send files and notes between every phone, tablet and laptop on the hotspot, and keep movies for the flight.</p><span class="tag">Tools</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-guide">
+          <span class="mono" style="background:#5ec4b6">TG</span>
+          <span><h3>Travel Guide</h3><p>All of Wikivoyage, offline. Look up any destination, or ask a question and get an answer from the guide.</p><span class="tag">Travel · uses the model</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>AirplaneMode. Open source, self-hosted, offline first.</span>
+    <span><a href="https://github.com/jessewolcott/airplanemode">Platform</a> · <a href="https://github.com/jessewolcott/airplanemode/blob/main/docs/hardware.md">Hardware notes</a> · <a href="install.sh">install.sh</a> · <a href="https://github.com/jessewolcott/airplanemode-site">This site</a></span>
+  </div>
+</footer>
+
+<!-- The config tool: one instance, moved into the selected device's install step. -->
+<template id="tool-tpl">
+  <div class="tool">
+    <div class="tool-head"><b>Your install command</b><small class="tool-dev"></small></div>
+    <div class="tool-grid">
+      <div class="field">
+        <label for="t-lan">Router address</label>
+        <input type="text" id="t-lan" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="detected automatically">
+        <div class="hint">Leave empty unless you changed the router's LAN subnet.</div>
+      </div>
+      <div class="field" style="display:grid;gap:12px;align-content:start">
+        <label class="toggle"><input type="checkbox" id="t-vpn" checked><span>Home VPN support<small>Installs WireGuard so you can tunnel home.</small></span></label>
+        <label class="toggle"><input type="checkbox" id="t-rebind" checked><span>Make hotel sign-in pages work<small>Turns off DNS rebind protection, which blocks many of them.</small></span></label>
+      </div>
+      <details class="adv">
+        <summary>Advanced</summary>
+        <div class="tool-grid">
+          <div class="field">
+            <label for="t-wan">Wired WAN interface</label>
+            <input type="text" id="t-wan" autocomplete="off" spellcheck="false" placeholder="wan">
+            <div class="hint">Only if LuCI → Network → Interfaces calls it something else.</div>
+          </div>
+          <div class="field">
+            <label for="t-dir">Install folder</label>
+            <input type="text" id="t-dir" autocomplete="off" spellcheck="false" placeholder="/opt/airplanemode">
+          </div>
+        </div>
+      </details>
+    </div>
+    <div class="cmd-label"><span>On the router, as root:</span><a href="install.sh" target="_blank" rel="noopener">read the script</a></div>
+    <div class="cmd"><pre class="t-cmd"></pre><button class="copy" type="button">Copy</button></div>
+    <details class="does">
+      <summary>What it does</summary>
+      <ul class="t-does"></ul>
+    </details>
+  </div>
+</template>
+
+<script>
+(() => {
+  const DEFAULT_BASE = "https://jessewolcott.github.io/airplanemode-site/";
+  const base = location.protocol === "https:" ? location.href.replace(/[#?].*$/, "").replace(/[^/]*$/, "") : DEFAULT_BASE;
+  const DEVICES = {
+    "nanopi-r6s": { label: "NanoPi R6S · full profile", ip: "192.168.2.1" },
+    "glinet": { label: "GL.iNet · lite profile", ip: "192.168.8.1" },
+  };
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem("am." + k); return v === null ? d : JSON.parse(v); } catch { return d; } },
+    set(k, v) { try { localStorage.setItem("am." + k, JSON.stringify(v)); } catch {} },
+  };
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  // ---- the config tool ----
+  const tool = $("#tool-tpl").content.firstElementChild.cloneNode(true);
+  const f = { lan: $("#t-lan", tool), vpn: $("#t-vpn", tool), rebind: $("#t-rebind", tool), wan: $("#t-wan", tool), dir: $("#t-dir", tool) };
+  const saved = store.get("opts", {});
+  for (const [k, el] of Object.entries(f)) {
+    if (saved[k] === undefined) continue;
+    if (el.type === "checkbox") el.checked = saved[k]; else el.value = saved[k];
+  }
+  let device = store.get("device", "nanopi-r6s");
+  if (!DEVICES[device]) device = "nanopi-r6s";
+
+  const ipOk = v => /^(25[0-5]|2[0-4]\d|1?\d?\d)(\.(25[0-5]|2[0-4]\d|1?\d?\d)){3}$/.test(v);
+  const nameOk = v => /^[A-Za-z0-9_.-]+$/.test(v);
+  const dirOk = v => /^\/[A-Za-z0-9_./-]*$/.test(v);
+
+  function render() {
+    const lan = f.lan.value.trim(), wan = f.wan.value.trim(), dir = f.dir.value.trim();
+    f.lan.setAttribute("aria-invalid", lan && !ipOk(lan));
+    f.wan.setAttribute("aria-invalid", wan && !nameOk(wan));
+    f.dir.setAttribute("aria-invalid", dir && !dirOk(dir));
+    const opts = [];
+    // detection is reliable on both, but say it out loud so the command documents itself
+    opts.push(["--device", device]);
+    if (lan && ipOk(lan)) opts.push(["--lan-ip", lan]);
+    if (!f.vpn.checked) opts.push(["--no-wireguard"]);
+    if (!f.rebind.checked) opts.push(["--keep-rebind"]);
+    if (wan && nameOk(wan) && wan !== "wan") opts.push(["--wan", wan]);
+    if (dir && dirOk(dir) && dir !== "/opt/airplanemode") opts.push(["--dir", dir]);
+
+    // OpenWrt's built-in wget can't talk TLS to GitHub; curl can, so make sure it's there first.
+    const url = base + "install.sh";
+    const prep = "command -v curl >/dev/null || { opkg update && opkg install curl || apk add -U curl; } >/dev/null 2>&1";
+    const plain = `${prep}\ncurl -fsSL ${url} | sh -s -- ${opts.map(o => o.join(" ")).join(" ")}`;
+    $(".t-cmd", tool).innerHTML = `<span class="p"># </span><span class="d">${esc(prep)}</span>\n<span class="p"># </span>curl -fsSL ${esc(url)} | sh -s -- ` +
+      opts.map(o => `<span class="o">${esc(o[0])}</span>${o[1] ? " " + esc(o[1]) : ""}`).join(" ");
+    $(".t-cmd", tool).dataset.copy = plain;
+    $(".tool-dev", tool).textContent = DEVICES[device].label;
+
+    const ip = (lan && ipOk(lan)) ? lan : DEVICES[device].ip;
+    const does = [
+      `Checks it's an arm64 OpenWrt router with Docker, online, with enough space`,
+      `Downloads AirplaneMode to <code>${esc(dir && dirOk(dir) ? dir : "/opt/airplanemode")}</code> and applies the ${device === "glinet" ? "GL.iNet (lite)" : "NanoPi R6S (full)"} profile`,
+      `Creates a router login, <code>airplanemode</code>, that can change Wi-Fi settings and nothing else`,
+      `Points the name <code>airplane.mode</code> at ${esc(ip)} and makes Ethernet win over Wi-Fi`,
+      f.rebind.checked ? `Turns off DNS rebind protection so hotel sign-in pages load` : `Keeps DNS rebind protection on`,
+      f.vpn.checked ? `Installs WireGuard for the home VPN` : `Skips WireGuard`,
+      `Downloads and starts the apps${device === "nanopi-r6s" ? " and the language model" : ""}, then checks the admin panel can control the router`,
+      `Prints your admin password`,
+    ];
+    $(".t-does", tool).innerHTML = does.map(d => `<li>${d}</li>`).join("");
+    $$(".ssh").forEach(el => { if (el.closest(`.guide[data-device="${device}"]`)) el.textContent = `ssh root@${ip}`; });
+
+    store.set("opts", Object.fromEntries(Object.entries(f).map(([k, el]) => [k, el.type === "checkbox" ? el.checked : el.value])));
+  }
+  Object.values(f).forEach(el => el.addEventListener("input", render));
+
+  // ---- device tabs ----
+  function selectDevice(d) {
+    device = d; store.set("device", d);
+    $$(".device").forEach(b => b.setAttribute("aria-selected", b.dataset.device === d));
+    $$(".guide").forEach(g => g.hidden = g.dataset.device !== d);
+    $(`.guide[data-device="${d}"] .tool-slot`).append(tool);
+    render(); progress();
+  }
+  $$(".device").forEach(b => b.addEventListener("click", () => selectDevice(b.dataset.device)));
+  $(".devices").addEventListener("keydown", e => {
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    const tabs = $$(".device"), i = tabs.findIndex(t => t.dataset.device === device);
+    const next = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length];
+    selectDevice(next.dataset.device); next.focus();
+  });
+
+  // ---- step checklist ----
+  const done = new Set(store.get("done", []));
+  function progress() {
+    const steps = $$(`.guide[data-device="${device}"] li[data-step]`);
+    const n = steps.filter(s => done.has(s.dataset.step)).length;
+    $("#progText").textContent = `${n} of ${steps.length} done`;
+    $("#progBar").style.width = (100 * n / steps.length) + "%";
+  }
+  $$("li[data-step]").forEach(li => {
+    const box = $(".step-head input", li);
+    box.checked = done.has(li.dataset.step);
+    li.classList.toggle("done", box.checked);
+    box.addEventListener("change", () => {
+      box.checked ? done.add(li.dataset.step) : done.delete(li.dataset.step);
+      li.classList.toggle("done", box.checked);
+      store.set("done", [...done]); progress();
+    });
+  });
+  $("#reset").addEventListener("click", () => {
+    done.clear(); store.set("done", []);
+    $$("li[data-step]").forEach(li => { $(".step-head input", li).checked = false; li.classList.remove("done"); });
+    progress();
+  });
+
+  // ---- copy buttons ----
+  document.addEventListener("click", async e => {
+    const btn = e.target.closest(".copy");
+    if (!btn) return;
+    const pre = btn.parentElement.querySelector("pre");
+    const text = pre.dataset.copy || pre.textContent.replace(/^#\s*/gm, "");
+    try { await navigator.clipboard.writeText(text); }
+    catch {
+      const r = document.createRange(); r.selectNodeContents(pre);
+      const s = getSelection(); s.removeAllRanges(); s.addRange(r); document.execCommand("copy"); s.removeAllRanges();
+    }
+    btn.textContent = "Copied"; btn.classList.add("ok");
+    setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("ok"); }, 1600);
+  });
+
+  selectDevice(device);
+})();
+</script>
+</body>
+</html>

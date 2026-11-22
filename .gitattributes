@@ -1,0 +1,3 @@
+# install.sh runs on the router: keep Unix line endings even when checked out on Windows.
+*.sh text eol=lf
+tests/docker-stub text eol=lf

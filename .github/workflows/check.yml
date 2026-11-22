@@ -1,0 +1,19 @@
+name: check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  installer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: shellcheck (POSIX sh)
+        run: shellcheck -s sh -e SC2046,SC2086 install.sh tests/openwrt-run.sh
+      - uses: docker/setup-qemu-action@v3
+      - name: Installer on OpenWrt 24.10 arm64 (busybox sh, stub Docker)
+        run: |
+          docker run --rm --platform linux/aarch64_generic -v "$PWD:/src:ro" \
+            -v "$PWD/tests/docker-stub:/usr/bin/docker:ro" \
+            openwrt/rootfs:aarch64_generic-24.10.4 sh /src/tests/openwrt-run.sh
