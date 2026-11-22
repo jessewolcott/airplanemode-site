@@ -446,8 +446,10 @@
 
 <script>
 (() => {
-  const DEFAULT_BASE = "https://jessewolcott.com/airplanemode-site/";
-  const base = location.protocol === "https:" ? location.href.replace(/[#?].*$/, "").replace(/[^/]*$/, "") : DEFAULT_BASE;
+  // Served over https (its own server): the command points back at this site's install.sh.
+  // Anywhere else (local preview, or before the server exists): the file in the GitHub repo.
+  const FALLBACK_URL = "https://raw.githubusercontent.com/jessewolcott/airplanemode-site/main/install.sh";
+  const installUrl = location.protocol === "https:" ? location.href.replace(/[#?].*$/, "").replace(/[^/]*$/, "") + "install.sh" : FALLBACK_URL;
   const DEVICES = {
     "nanopi-r6s": { label: "NanoPi R6S · full profile", ip: "192.168.2.1" },
     "glinet": { label: "GL.iNet · lite profile", ip: "192.168.8.1" },
@@ -490,7 +492,7 @@
     if (dir && dirOk(dir) && dir !== "/opt/airplanemode") opts.push(["--dir", dir]);
 
     // OpenWrt's built-in wget can't talk TLS to GitHub; curl can, so make sure it's there first.
-    const url = base + "install.sh";
+    const url = installUrl;
     const prep = "command -v curl >/dev/null || { opkg update && opkg install curl || apk add -U curl; } >/dev/null 2>&1";
     const plain = `${prep}\ncurl -fsSL ${url} | sh -s -- ${opts.map(o => o.join(" ")).join(" ")}`;
     $(".t-cmd", tool).innerHTML = `<span class="p"># </span><span class="d">${esc(prep)}</span>\n<span class="p"># </span>curl -fsSL ${esc(url)} | sh -s -- ` +
