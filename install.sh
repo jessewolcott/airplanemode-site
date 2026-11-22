@@ -132,7 +132,7 @@ preflight() {
 		|| die "the router can't reach github.com. Get it online first (Ethernet into WAN, or join a Wi-Fi in LuCI)."
 	ok "online"
 
-	need=3000000; [ "$DEVICE" = glinet ] && need=1200000   # KB: images + model + Wikivoyage
+	need=3000000; [ "$DEVICE" = glinet ] && need=1200000   # KB: images (+ model + Wikivoyage on the R6S)
 	root=$(docker info -f '{{.DockerRootDir}}' 2>/dev/null); [ -d "$root" ] || root=/
 	free=$(df -k "$root" 2>/dev/null | awk 'NR==2 {print $4}')
 	case "$free" in
