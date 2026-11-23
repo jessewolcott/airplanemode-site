@@ -48,7 +48,7 @@ jobs:
       cancel-in-progress: false
     environment:
       name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+      url: ${{ steps.deploy.outputs.page_url || steps.deploy_retry.outputs.page_url }}
     steps:
       - uses: actions/checkout@v7
       - name: Stage the site
@@ -61,7 +61,17 @@ jobs:
         with:
           path: _site
           name: github-pages-${{ github.run_attempt }}
+      # deploy-pages sometimes can't see an artifact uploaded seconds earlier ("Found 0
+      # artifact(s)"); a re-run always worked. So wait, then try once more on its own.
       - id: deploy
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages-${{ github.run_attempt }}
+      - if: steps.deploy.outcome == 'failure'
+        run: sleep 30
+      - id: deploy_retry
+        if: steps.deploy.outcome == 'failure'
         uses: actions/deploy-pages@v4
         with:
           artifact_name: github-pages-${{ github.run_attempt }}

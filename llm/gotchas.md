@@ -89,3 +89,6 @@
   after the push, not before; run shellcheck and the container test locally first.
 - CI clones the platform's live `main`; a platform change can break this repo's CI.
 - Everything is *untested on real hardware*; say so in docs and pages.
+- **Pages deploy can miss a fresh artifact.** `deploy-pages` sometimes finds "0 artifact(s)"
+  for one uploaded seconds earlier (four times on 2026-11-22/23; every re-run worked). The
+  pages job now retries once by itself after 30 s (`deploy_retry` in `check.yml`).
