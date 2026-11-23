@@ -35,16 +35,16 @@ Constraints it is written under:
 | `63-71` | `set_env` / `get_env` |
 | `73-81` | `detect_device` |
 | `83-88` | `detect_lan_ip` |
-| `90-95` | `valid_ip` |
-| `97-152` | `preflight` |
-| `154-173` | `fetch_code` |
-| `175-198` | `configure` |
-| `200-204` | `setup_router` |
-| `206-209` | `start_stack` |
-| `211-238` | `check_router_api` |
-| `240-249` | `finish` |
-| `251-278` | `main` |
-| `280-281` | `set -eu` then `main "$@"` |
+| `90-98` | `valid_ip` |
+| `100-155` | `preflight` |
+| `157-184` | `fetch_code` |
+| `186-209` | `configure` |
+| `211-215` | `setup_router` |
+| `217-220` | `start_stack` |
+| `222-249` | `check_router_api` |
+| `251-260` | `finish` |
+| `262-289` | `main` |
+| `291-292` | `set -eu` then `main "$@"` |
 
 ## Why everything runs from main()
 

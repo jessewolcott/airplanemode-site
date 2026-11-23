@@ -25,13 +25,14 @@ landing page (`../airplanemode/portal/index.html`); keep them in step.
 | `<head>` meta | | title, description, canonical + `hreflang` alternates for all 7 languages and x-default, favicon `assets/icon.svg`, apple-touch icon, Open Graph title/description/image (`assets/landing-online.png`, relative) |
 | sticky header | | brand (icon + "Airplane**Mode**"), nav: Features, Set up, Apps (Features/Apps hidden <=560px via `.hide-sm`), GitHub (hidden <=440px), language switcher (`details.langs`, see i18n.md) |
 | `#lang-hint` | | hidden bar the script shows when the browser prefers another language we have |
-| hero | `198-214` | eyebrow, h1, lead, buttons (`#setup`, GitHub), "Early days" note, three phone screenshots (`landing-signin`, `landing-online`, `guide-ask`), decorative (`aria-hidden`) |
-| `#features` | `216-254` | six feature cards with inline SVG icons |
-| `#setup` | `256-378` | device tabs, progress bar, two guides (R6S, GL.iNet) |
-| `#apps` | `380-428` | cards linking to the ten app repos, mirroring the platform's `portal/apps.json` (names, descriptions, icons in `assets/icons/`) |
-| footer | `431-436` | links: platform, `docs/hardware.md`, `install.sh` (relative), this repo |
-| `<template id="tool-tpl">` | `439-474` | the config tool |
-| script | `476-607` | everything interactive |
+| hero | `57-73` | eyebrow, h1, lead, buttons (`#setup`, GitHub), "Early days" note, three phone screenshots (`landing-signin`, `landing-online`, `guide-ask`), decorative (`aria-hidden`) |
+| `#features` | `75-113` | six feature cards with inline SVG icons |
+| `#setup` | `115-237` | device tabs, progress bar, two guides (R6S, GL.iNet) |
+| `#apps` | `239-287` | cards linking to the ten app repos, mirroring the platform's `portal/apps.json` (names, descriptions, icons in `assets/icons/`) |
+| footer | `290-295` | links: platform, `docs/hardware.md`, `install.sh` (relative), this repo |
+| `<template id="tool-tpl">` | `298-333` | the config tool |
+| `#ui-strings` | `336-357` | the page's UI strings as JSON (translated per language, see i18n.md) |
+| script | `358` | `<script src="assets/site.js">`: everything interactive (shared by all languages) |
 
 `assets/drop.png` and `assets/admin-vpn-devices.png` exist but are not referenced by the
 page today.
@@ -61,14 +62,16 @@ moved into the selected guide's slot.
 
 ## Script (assets/site.js)
 
-### Constants and helpers (448-463)
+### Constants and helpers (site.js:8-29)
 - `FALLBACK_URL` = `https://raw.githubusercontent.com/jessewolcott/airplanemode-site/main/install.sh`.
 - `installUrl`, see next section. `T` = the parsed `#ui-strings` JSON (the page's own language).
-- `DEVICES`: `nanopi-r6s` -> label "NanoPi R6S · full profile", default ip `192.168.2.1`;
-  `glinet` -> "GL.iNet · lite profile", `192.168.8.1`.
+- `LANG` = `<html lang>`. `DEVICES`: `nanopi-r6s` and `glinet`, each with `label` and `profile`
+  from `T` (English: "NanoPi R6S · full profile" / "NanoPi R6S (full)", "GL.iNet · lite
+  profile" / "GL.iNet (lite)") and default ip `192.168.2.1` / `192.168.8.1`.
 - `store.get/set`: JSON in `localStorage` under the prefix `am.`, every access in
   `try/catch` so a blocked or missing storage just falls back to defaults.
-- `$`, `$$` (querySelector/All as array), `esc` (HTML-escapes `& < > "`).
+- `$`, `$$` (querySelector/All as array), `esc` (HTML-escapes `& < > "`), `fmt(s, vars)`
+  (escapes a UI string, then fills `{name}` placeholders with already-escaped HTML).
 
 ### How the install URL is derived
 
