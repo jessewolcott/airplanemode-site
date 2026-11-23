@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#0d0f12">
 <title>AirplaneMode: un router de viaje con sus propias apps</title>
-<meta name="description" content="Un router de viaje que trae sus propias apps. Comparte un único inicio de sesión del hotel con todos tus dispositivos, se reconecta solo y ejecuta juegos, herramientas y un pequeño modelo de lenguaje sin nada de internet.">
+<meta name="description" content="Un router de viaje que trae sus propias apps. Comparte un único inicio de sesión del hotel con todos tus dispositivos, se reconecta solo y ejecuta juegos, herramientas y un pequeño modelo de lenguaje sin conexión a internet.">
 <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <meta property="og:title" content="AirplaneMode">
@@ -58,7 +58,7 @@
     <div>
       <div class="eyebrow">Router de viaje de código abierto</div>
       <h1>Tu propio wifi, en cualquier parte. <em>Apps que vuelan sin conexión.</em></h1>
-      <p class="lead">AirplaneMode convierte un router pequeño en un punto de acceso privado. Inicia sesión en el wifi del hotel una sola vez para todos los dispositivos, se reconecta solo y ejecuta juegos, herramientas y un pequeño modelo de lenguaje sin nada de internet.</p>
+      <p class="lead">AirplaneMode convierte un router pequeño en un punto de acceso privado. Inicia sesión en el wifi del hotel una sola vez para todos los dispositivos, se reconecta solo y ejecuta juegos, herramientas y un pequeño modelo de lenguaje sin conexión a internet.</p>
       <div class="btns">
         <a class="btn primary" href="#setup">Monta el tuyo <span aria-hidden="true">→</span></a>
         <a class="btn ghost" href="https://github.com/jessewolcott/airplanemode">Lee el código</a>
@@ -115,10 +115,10 @@
   <section class="block" id="setup">
     <div class="wrap">
       <div class="eyebrow">Configurar</div>
-      <h2 class="title">De la caja al punto de acceso en una media hora</h2>
+      <h2 class="title">De la caja al punto de acceso en media hora, más o menos</h2>
       <p class="sub">Elige tu router. Marca los pasos a medida que avanzas: esta página recuerda por dónde vas.</p>
 
-      <div class="devices" role="tablist" aria-label="Elige el router">
+      <div class="devices" role="tablist" aria-label="Router">
         <button class="device" role="tab" id="tab-r6s" aria-controls="guide-r6s" aria-selected="true" data-device="nanopi-r6s">
           <span class="name">NanoPi R6S <span class="pill full">Completo</span></span>
           <span class="desc">Todo, incluido el modelo de lenguaje integrado. Necesita dos adaptadores wifi USB.</span>
@@ -129,7 +129,7 @@
         </button>
       </div>
 
-      <div class="progress"><span id="progText">0 de 0 hechos</span><span class="bar"><i id="progBar"></i></span><button class="check" id="reset" type="button" style="background:none;border:0;font:inherit;color:inherit">borrar</button></div>
+      <div class="progress"><span id="progText">0 de 0 completados</span><span class="bar"><i id="progBar"></i></span><button class="check" id="reset" type="button" style="background:none;border:0;font:inherit;color:inherit">reiniciar</button></div>
 
       <!-- ===================== NanoPi R6S ===================== -->
       <div class="guide" id="guide-r6s" role="tabpanel" aria-labelledby="tab-r6s" data-device="nanopi-r6s">
@@ -138,7 +138,7 @@
             <div class="step-head"><h3>Consigue las piezas</h3><label class="check"><input type="checkbox"> hecho</label></div>
             <div class="step-body">
               <table class="parts">
-                <tr><td>NanoPi R6S, 8 GB</td><td>El aparato. Elige la carcasa metálica: hace de disipador.</td></tr>
+                <tr><td>NanoPi R6S, 8 GB</td><td>El equipo en sí. Cómpralo con la carcasa metálica: hace de disipador.</td></tr>
                 <tr><td>2 × adaptador wifi USB</td><td>El R6S no tiene wifi. Solo MediaTek: p. ej., ALFA AWUS036ACM (MT7612U) para el punto de acceso y AWUS036ACHM (MT7610U) para la red del hotel.</td></tr>
                 <tr><td>Alimentación USB-C de 5 V / 3 A</td><td>O una batería externa USB-C PD.</td></tr>
                 <tr><td>Tarjeta microSD de 8 GB o más</td><td>Solo para grabar la imagen, una vez.</td></tr>
@@ -159,7 +159,7 @@
                 <span class="led"><i class="fast"></i>parpadeo rápido</span><span>instalando, tarda unos minutos</span>
                 <span class="led"><i class="slow"></i><i class="g"></i>lento + verde</span><span>listo: SYS parpadea despacio y las luces WAN/LAN se quedan encendidas</span>
               </div>
-              <ol start="4"><li>Desenchufa la alimentación, <b>saca la tarjeta</b> y vuelve a encenderlo. Ahora arranca desde la eMMC.</li></ol>
+              <ol start="4"><li>Desconecta la alimentación, <b>saca la tarjeta</b> y vuelve a encenderlo. Ahora arranca desde la eMMC.</li></ol>
             </div>
           </li>
           <li data-step="r6s-login">
@@ -226,7 +226,7 @@
             </div>
           </li>
           <li data-step="gl-done">
-            <div class="step-head"><h3>Ponle nombre a tu punto de acceso y usa un solo repetidor</h3><label class="check"><input type="checkbox"> hecho</label></div>
+            <div class="step-head"><h3>Ponle nombre a tu punto de acceso y elige un solo repetidor</h3><label class="check"><input type="checkbox"> hecho</label></div>
             <div class="step-body">
               <p>Abre <a class="admin-link" href="http://airplane.mode:8080/admin/" rel="noopener">http://airplane.mode:8080/admin/</a> e inicia sesión. GL.iNet tiene su propia página de repetidor, que también cambia el wifi de origen, así que usa esa o el panel <b>Internet source</b> de AirplaneMode, pero no las dos.</p>
             </div>
@@ -272,7 +272,7 @@
         </a>
         <a class="app" href="https://github.com/jessewolcott/airplanemode-couch">
           <img class="ico" src="../assets/icons/couch.svg" alt="" width="46" height="46" loading="lazy">
-          <span><h3>The Couch</h3><p>Un simulador de terapeuta: habla de lo que te ronda la cabeza con uno de seis terapeutas, desde una Empática amable hasta un Narcisista juguetón, interpretados por el modelo integrado. No es terapia de verdad.</p><span class="tag">Entretenimiento · usa el modelo (no en GL.iNet)</span></span>
+          <span><h3>The Couch</h3><p>Un simulador de terapeuta: habla de lo que te ronda la cabeza con uno de seis terapeutas, desde un Empático amable hasta un Narcisista juguetón, interpretados por el modelo integrado. No es terapia de verdad.</p><span class="tag">Entretenimiento · usa el modelo (no en GL.iNet)</span></span>
         </a>
         <a class="app" href="https://github.com/jessewolcott/airplanemode-guide">
           <img class="ico" src="../assets/icons/guide.svg" alt="" width="46" height="46" loading="lazy">
@@ -339,7 +339,7 @@
   "device.glinet": "GL.iNet · perfil ligero",
   "profile.nanopi-r6s": "NanoPi R6S (completo)",
   "profile.glinet": "GL.iNet (ligero)",
-  "progress": "{n} de {total} hechos",
+  "progress": "{n} de {total} completados",
   "copy": "Copiar",
   "copied": "Copiado",
   "does.check": "Comprueba que es un router OpenWrt arm64 con Docker, conectado a internet y con espacio suficiente",

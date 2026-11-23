@@ -76,7 +76,7 @@
     <div class="wrap">
       <div class="eyebrow">Nó làm được gì</div>
       <h2 class="title">Dành cho khách sạn, sân bay và máy bay</h2>
-      <p class="sub">Mọi thứ chạy ngay trên chiếc hộp nhỏ. Các thiết bị của bạn kết nối vào một mạng của riêng bạn, phần còn lại để chiếc hộp lo.</p>
+      <p class="sub">Mọi thứ chạy ngay trên router. Các thiết bị của bạn kết nối vào một mạng của riêng bạn, phần còn lại để router lo.</p>
       <div class="features">
         <div class="feature">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1"/><path d="M2 9a14 14 0 0 1 20 0"/></svg>
@@ -91,7 +91,7 @@
         <div class="feature">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 10l3 3-3 3M13 16h3"/></svg>
           <h3>Ứng dụng không cần Internet</h3>
-          <p>Chơi bài với bạn bè qua điểm phát, đố vui du lịch, phiêu lưu bằng chữ, phim, chia sẻ tệp, Wikivoyage ngoại tuyến và một mô hình ngôn ngữ tích hợp sẵn trong hộp.</p>
+          <p>Chơi bài với bạn bè qua điểm phát Wi-Fi, đố vui du lịch, trò phiêu lưu dạng văn bản, phim, chia sẻ tệp, Wikivoyage ngoại tuyến và một mô hình ngôn ngữ tích hợp sẵn trong router.</p>
         </div>
         <div class="feature">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
@@ -118,7 +118,7 @@
       <h2 class="title">Từ lúc mở hộp đến khi phát Wi-Fi chỉ khoảng nửa tiếng</h2>
       <p class="sub">Chọn router của bạn. Đánh dấu từng bước khi làm xong: trang này sẽ nhớ bạn đang ở bước nào.</p>
 
-      <div class="devices" role="tablist" aria-label="Chọn router">
+      <div class="devices" role="tablist" aria-label="Router">
         <button class="device" role="tab" id="tab-r6s" aria-controls="guide-r6s" aria-selected="true" data-device="nanopi-r6s">
           <span class="name">NanoPi R6S <span class="pill full">Đầy đủ</span></span>
           <span class="desc">Mọi tính năng, kể cả mô hình ngôn ngữ tích hợp. Cần hai USB Wi-Fi.</span>
@@ -129,7 +129,7 @@
         </button>
       </div>
 
-      <div class="progress"><span id="progText">Đã xong 0/0</span><span class="bar"><i id="progBar"></i></span><button class="check" id="reset" type="button" style="background:none;border:0;font:inherit;color:inherit">làm lại</button></div>
+      <div class="progress"><span id="progText">Đã xong 0/0</span><span class="bar"><i id="progBar"></i></span><button class="check" id="reset" type="button" style="background:none;border:0;font:inherit;color:inherit">đặt lại</button></div>
 
       <!-- ===================== NanoPi R6S ===================== -->
       <div class="guide" id="guide-r6s" role="tabpanel" aria-labelledby="tab-r6s" data-device="nanopi-r6s">
@@ -167,7 +167,7 @@
             <div class="step-body">
               <ol>
                 <li>Cắm laptop vào cổng ghi <b>LAN</b>, và một sợi cáp từ router ở nhà vào cổng ghi <b>WAN</b>.</li>
-                <li>Mở <a href="http://192.168.2.1/" rel="noopener">http://192.168.2.1</a>. Đăng nhập bằng <code>root</code> với mật khẩu <code>password</code> (ở một số phiên bản thì để trống).</li>
+                <li>Mở <a href="http://192.168.2.1/" rel="noopener">http://192.168.2.1</a>. Đăng nhập với tài khoản <code>root</code> và mật khẩu <code>password</code> (ở một số phiên bản thì để trống mật khẩu).</li>
                 <li>Đặt mật khẩu root của riêng bạn: <b>System → Administration</b>. Mật khẩu đó chỉ bạn giữ; AirplaneMode có tài khoản riêng, bị giới hạn quyền.</li>
               </ol>
             </div>
@@ -175,7 +175,7 @@
           <li data-step="r6s-adapters">
             <div class="step-head"><h3>Cắm các USB Wi-Fi</h3><label class="check"><input type="checkbox"> xong</label></div>
             <div class="step-body">
-              <p>Cắm USB Wi-Fi dùng để phát (AWUS036ACM) vào cổng <b>USB 3.0</b> màu xanh dương và cái còn lại vào cổng USB 2.0. Trong LuCI, mục <b>Network → Wireless</b> giờ sẽ hiện hai radio. Không cần cài đặt gì: bảng quản trị sẽ lo việc đó.</p>
+              <p>Cắm USB Wi-Fi dùng để phát (AWUS036ACM) vào cổng <b>USB 3.0</b> màu xanh dương và cái còn lại vào cổng USB 2.0. Trong LuCI, mục <b>Network → Wireless</b> giờ sẽ hiện hai thiết bị vô tuyến (radio). Không cần cài đặt gì: bảng quản trị sẽ lo việc đó.</p>
             </div>
           </li>
           <li data-step="r6s-install">
@@ -226,7 +226,7 @@
             </div>
           </li>
           <li data-step="gl-done">
-            <div class="step-head"><h3>Đặt tên cho điểm phát Wi-Fi, và chỉ dùng một chế độ lặp sóng</h3><label class="check"><input type="checkbox"> xong</label></div>
+            <div class="step-head"><h3>Đặt tên cho điểm phát Wi-Fi và chỉ dùng một trang lặp sóng</h3><label class="check"><input type="checkbox"> xong</label></div>
             <div class="step-body">
               <p>Mở <a class="admin-link" href="http://airplane.mode:8080/admin/" rel="noopener">http://airplane.mode:8080/admin/</a> và đăng nhập. GL.iNet có trang lặp sóng (repeater) riêng, trang này cũng chỉnh Wi-Fi nguồn, nên hãy dùng trang đó hoặc bảng <b>Internet source</b> của AirplaneMode, đừng dùng cả hai.</p>
             </div>
@@ -238,17 +238,17 @@
 
   <section class="block" id="apps">
     <div class="wrap">
-      <div class="eyebrow">Ứng dụng trong hộp</div>
+      <div class="eyebrow">Ứng dụng có sẵn trên router</div>
       <h2 class="title">Làm gì ở độ cao 10.000 mét</h2>
       <p class="sub">Hiện có mười ứng dụng. Mỗi ứng dụng là một dự án mã nguồn mở riêng và được gắn vào dưới dạng container.</p>
       <div class="apps">
         <a class="app" href="https://github.com/jessewolcott/airplanemode-darklight">
           <img class="ico" src="../assets/icons/darklight.svg" alt="" width="46" height="46" loading="lazy">
-          <span><h3>The Dark Light</h3><p>Truyện phiêu lưu bằng chữ do mô hình tích hợp dẫn chuyện, chơi một mình hoặc cả nhóm trên điện thoại của mỗi người: một ngọn hải đăng tối om, một đèo núi băng giá và một đầm lầy chìm trong sương mù.</p><span class="tag">Trò chơi · dùng mô hình (không có trên GL.iNet)</span></span>
+          <span><h3>The Dark Light</h3><p>Trò phiêu lưu dạng văn bản do mô hình tích hợp dẫn chuyện, chơi một mình hoặc cả nhóm trên điện thoại của mỗi người: một ngọn hải đăng tối om, một đèo núi băng giá và một đầm lầy chìm trong sương mù.</p><span class="tag">Trò chơi · dùng mô hình (không có trên GL.iNet)</span></span>
         </a>
         <a class="app" href="https://github.com/jessewolcott/airplanemode-gatechange">
           <img class="ico" src="../assets/icons/gatechange.svg" alt="" width="46" height="46" loading="lazy">
-          <span><h3>Gate Change</h3><p>Trò chơi bài màu sắc và con số nhịp độ nhanh cho 2 đến 8 người. Chơi với bạn bè qua điểm phát, mỗi người một điện thoại, hoặc chơi với máy.</p><span class="tag">Trò chơi</span></span>
+          <span><h3>Gate Change</h3><p>Trò chơi bài màu sắc và con số nhịp độ nhanh cho 2 đến 8 người. Chơi với bạn bè qua điểm phát Wi-Fi, mỗi người một điện thoại, hoặc chơi với máy.</p><span class="tag">Trò chơi</span></span>
         </a>
         <a class="app" href="https://github.com/jessewolcott/airplanemode-passport">
           <img class="ico" src="../assets/icons/passport.svg" alt="" width="46" height="46" loading="lazy">
@@ -260,7 +260,7 @@
         </a>
         <a class="app" href="https://github.com/jessewolcott/airplanemode-doom">
           <img class="ico" src="../assets/icons/doom.svg" alt="" width="46" height="46" loading="lazy">
-          <span><h3>Doom</h3><p>Game bắn súng kinh điển, chạy ngay trên thiết bị của bạn với điều khiển cảm ứng. Freedoom, màn chơi sân bay Layover, hoặc tệp WAD của riêng bạn từ Drop.</p><span class="tag">Trò chơi</span></span>
+          <span><h3>Doom</h3><p>Trò chơi bắn súng kinh điển, chạy ngay trên thiết bị của bạn với điều khiển cảm ứng. Freedoom, màn chơi sân bay Layover, hoặc tệp WAD của riêng bạn từ Drop.</p><span class="tag">Trò chơi</span></span>
         </a>
         <a class="app" href="https://github.com/jessewolcott/airplanemode-cinema">
           <img class="ico" src="../assets/icons/cinema.svg" alt="" width="46" height="46" loading="lazy">
@@ -272,7 +272,7 @@
         </a>
         <a class="app" href="https://github.com/jessewolcott/airplanemode-couch">
           <img class="ico" src="../assets/icons/couch.svg" alt="" width="46" height="46" loading="lazy">
-          <span><h3>The Couch</h3><p>Trò mô phỏng nhà trị liệu: tâm sự với một trong sáu nhà trị liệu, từ Người Thấu Cảm dịu dàng đến Kẻ Ái Kỷ tinh nghịch, do mô hình tích hợp đóng vai. Không phải trị liệu thật.</p><span class="tag">Giải trí · dùng mô hình (không có trên GL.iNet)</span></span>
+          <span><h3>The Couch</h3><p>Trò mô phỏng nhà trị liệu: tâm sự với một trong sáu nhà trị liệu, từ “Người thấu cảm” dịu dàng đến “Kẻ ái kỷ” tinh nghịch, do mô hình tích hợp đóng vai. Không phải trị liệu thật.</p><span class="tag">Giải trí · dùng mô hình (không có trên GL.iNet)</span></span>
         </a>
         <a class="app" href="https://github.com/jessewolcott/airplanemode-guide">
           <img class="ico" src="../assets/icons/guide.svg" alt="" width="46" height="46" loading="lazy">
@@ -306,7 +306,7 @@
       </div>
       <div class="field" style="display:grid;gap:12px;align-content:start">
         <label class="toggle"><input type="checkbox" id="t-vpn" checked><span>VPN về nhà<small>Cài WireGuard để bạn có thể mở đường hầm về mạng ở nhà.</small></span></label>
-        <label class="toggle"><input type="checkbox" id="t-rebind" checked><span>Cho trang đăng nhập của khách sạn hoạt động<small>Tắt chế độ chống DNS rebinding, vốn chặn nhiều trang như vậy.</small></span></label>
+        <label class="toggle"><input type="checkbox" id="t-rebind" checked><span>Giúp trang đăng nhập của khách sạn hoạt động<small>Tắt chế độ chống DNS rebinding, vốn chặn nhiều trang như vậy.</small></span></label>
       </div>
       <details class="adv">
         <summary>Nâng cao</summary>
@@ -344,7 +344,7 @@
   "copied": "Đã sao chép",
   "does.check": "Kiểm tra đây là router OpenWrt arm64 có Docker, đang có mạng và đủ dung lượng trống",
   "does.download": "Tải AirplaneMode về {dir} và áp dụng cấu hình {profile}",
-  "does.login": "Tạo tài khoản router {user}, chỉ được đổi cài đặt Wi-Fi, ngoài ra không làm được gì khác",
+  "does.login": "Tạo trên router một tài khoản, {user}, chỉ được đổi cài đặt Wi-Fi và không làm được gì khác",
   "does.name": "Trỏ tên {name} về {ip} và ưu tiên Ethernet hơn Wi-Fi",
   "does.rebind-off": "Tắt chế độ chống DNS rebinding để trang đăng nhập của khách sạn tải được",
   "does.rebind-on": "Giữ nguyên chế độ chống DNS rebinding",

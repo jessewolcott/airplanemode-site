@@ -14,11 +14,11 @@
     "English", "Español", "Français", "Italiano", "Tiếng Việt"
   ],
   "same": {
-    "es": ["Apps"],
+    "es": ["Apps", "Router"],
     "fr": [],
-    "it": [],
+    "it": ["Router"],
     "zh": [],
     "ja": [],
-    "vi": []
+    "vi": ["Router"]
   }
 }

@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#0d0f12">
 <title>AirplaneMode: un router da viaggio con le sue app</title>
-<meta name="description" content="Un router da viaggio che si porta dietro le sue app. Un solo accesso al Wi-Fi dell'hotel per tutti i tuoi dispositivi, si riconnette da solo e fa girare giochi, strumenti e un piccolo modello linguistico senza alcuna connessione a internet.">
+<meta name="description" content="Un router da viaggio che si porta dietro le sue app. Condivide un solo accesso al Wi-Fi dell'hotel con tutti i tuoi dispositivi, si riconnette da solo e fa girare giochi, strumenti e un piccolo modello linguistico senza alcuna connessione a internet.">
 <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <meta property="og:title" content="AirplaneMode">
@@ -81,7 +81,7 @@
         <div class="feature">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1"/><path d="M2 9a14 14 0 0 1 20 0"/></svg>
           <h3>Un solo accesso per tutti</h3>
-          <p>Una persona accetta la pagina delle condizioni dell'hotel e tutti i telefoni, portatili e tablet sono online. Niente da pagare per ogni dispositivo.</p>
+          <p>Una persona accetta la pagina delle condizioni dell'hotel e tutti i telefoni, portatili e tablet sono online. Nessun costo per dispositivo.</p>
         </div>
         <div class="feature">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>
@@ -106,7 +106,7 @@
         <div class="feature">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
           <h3>Privilegi minimi</h3>
-          <p>Il pannello di amministrazione controlla il router con un accesso limitato alle impostazioni Wi-Fi. Mai come root.</p>
+          <p>Il pannello di amministrazione controlla il router con un utente limitato alle impostazioni Wi-Fi. Mai come root.</p>
         </div>
       </div>
     </div>
@@ -118,7 +118,7 @@
       <h2 class="title">Dalla scatola all'hotspot in circa mezz'ora</h2>
       <p class="sub">Scegli il tuo router. Spunta i passaggi man mano: questa pagina ricorda a che punto sei.</p>
 
-      <div class="devices" role="tablist" aria-label="Scegli il router">
+      <div class="devices" role="tablist" aria-label="Router">
         <button class="device" role="tab" id="tab-r6s" aria-controls="guide-r6s" aria-selected="true" data-device="nanopi-r6s">
           <span class="name">NanoPi R6S <span class="pill full">Completo</span></span>
           <span class="desc">Tutto, compreso il modello linguistico integrato. Servono due adattatori Wi-Fi USB.</span>
@@ -129,7 +129,7 @@
         </button>
       </div>
 
-      <div class="progress"><span id="progText">0 di 0 fatti</span><span class="bar"><i id="progBar"></i></span><button class="check" id="reset" type="button" style="background:none;border:0;font:inherit;color:inherit">azzera</button></div>
+      <div class="progress"><span id="progText">0 di 0 completati</span><span class="bar"><i id="progBar"></i></span><button class="check" id="reset" type="button" style="background:none;border:0;font:inherit;color:inherit">azzera</button></div>
 
       <!-- ===================== NanoPi R6S ===================== -->
       <div class="guide" id="guide-r6s" role="tabpanel" aria-labelledby="tab-r6s" data-device="nanopi-r6s">
@@ -141,25 +141,25 @@
                 <tr><td>NanoPi R6S, 8 GB</td><td>Il dispositivo vero e proprio. Prendi il case in metallo: fa da dissipatore.</td></tr>
                 <tr><td>2 × adattatore Wi-Fi USB</td><td>L'R6S non ha il Wi-Fi. Solo MediaTek: ad es. ALFA AWUS036ACM (MT7612U) per l'hotspot, AWUS036ACHM (MT7610U) per la rete dell'hotel.</td></tr>
                 <tr><td>Alimentatore USB-C da 5 V / 3 A</td><td>Oppure un power bank USB-C PD.</td></tr>
-                <tr><td>Scheda microSD da 8 GB o più</td><td>Serve solo per il flash, una volta.</td></tr>
+                <tr><td>Scheda microSD da 8 GB o più</td><td>Serve solo una volta, per scrivere l'immagine.</td></tr>
                 <tr><td>Prolunga USB corta</td><td>Facoltativa. Tiene uno degli adattatori lontano dal case.</td></tr>
               </table>
             </div>
           </li>
           <li data-step="r6s-flash">
-            <div class="step-head"><h3>Installa FriendlyWrt sulla eMMC</h3><label class="check"><input type="checkbox"> fatto</label></div>
+            <div class="step-head"><h3>Installa FriendlyWrt sull'eMMC</h3><label class="check"><input type="checkbox"> fatto</label></div>
             <div class="step-body">
               <p>FriendlyWrt è l'OpenWrt di FriendlyElec, con Docker già incluso.</p>
               <ol>
                 <li>Apri <a href="http://download.friendlyelec.com/NanoPiR6S" rel="noopener">la pagina di download di FriendlyElec</a> → <code>01_Official images</code> → <code>02_SD-to-eMMC images</code> e scarica il file con un nome tipo <code>rk3588-eflasher-friendlywrt-…-docker-….img.gz</code>. <b>Scegli quello con <code>docker</code> nel nome.</b></li>
                 <li>Scrivilo sulla scheda microSD con <a href="https://etcher.balena.io/" rel="noopener">balenaEtcher</a> (accetta direttamente il <code>.gz</code>). Su Windows, lo strumento indicato da FriendlyElec è Win32 Disk Imager: prima decomprimi l'immagine.</li>
-                <li>Inserisci la scheda nell'R6S e accendilo. Si installa da solo sulla eMMC. Osserva la spia rossa <b>SYS</b>:</li>
+                <li>Inserisci la scheda nell'R6S e accendilo. Si installa da solo sull'eMMC. Osserva la spia rossa <b>SYS</b>:</li>
               </ol>
               <div class="leds">
                 <span class="led"><i class="fast"></i>lampeggio veloce</span><span>installazione in corso, qualche minuto</span>
                 <span class="led"><i class="slow"></i><i class="g"></i>lento + verde</span><span>fatto: SYS lampeggia lentamente e le spie WAN/LAN restano accese</span>
               </div>
-              <ol start="4"><li>Stacca l'alimentazione, <b>togli la scheda</b> e riaccendi. Ora si avvia dalla eMMC.</li></ol>
+              <ol start="4"><li>Stacca l'alimentazione, <b>togli la scheda</b> e riaccendi. Ora si avvia dall'eMMC.</li></ol>
             </div>
           </li>
           <li data-step="r6s-login">
@@ -168,7 +168,7 @@
               <ol>
                 <li>Collega il portatile alla porta con la scritta <b>LAN</b> e un cavo dal router di casa alla porta con la scritta <b>WAN</b>.</li>
                 <li>Apri <a href="http://192.168.2.1/" rel="noopener">http://192.168.2.1</a>. Accedi come <code>root</code> con la password <code>password</code> (in alcune versioni va lasciata vuota).</li>
-                <li>Imposta una tua password di root: <b>System → Administration</b>. Resta solo tua; AirplaneMode riceve un suo accesso, con permessi limitati.</li>
+                <li>Imposta una tua password di root: <b>System → Administration</b>. Resta solo tua; AirplaneMode riceve un suo utente, con permessi limitati.</li>
               </ol>
             </div>
           </li>
@@ -256,7 +256,7 @@
         </a>
         <a class="app" href="https://github.com/jessewolcott/airplanemode-wayfarer">
           <img class="ico" src="../assets/icons/wayfarer.svg" alt="" width="46" height="46" loading="lazy">
-          <span><h3>Wayfarer</h3><p>Quiz di viaggio dalla Travel Guide: capitali, valute, codici aeroportuali, frasi utili. Volo del giorno, modalità infinita, record.</p><span class="tag">Giochi</span></span>
+          <span><h3>Wayfarer</h3><p>Quiz di viaggio tratto da Travel Guide: capitali, valute, codici aeroportuali, frasi utili. Volo del giorno, modalità infinita, record.</p><span class="tag">Giochi</span></span>
         </a>
         <a class="app" href="https://github.com/jessewolcott/airplanemode-doom">
           <img class="ico" src="../assets/icons/doom.svg" alt="" width="46" height="46" loading="lazy">
@@ -339,14 +339,14 @@
   "device.glinet": "GL.iNet · profilo leggero",
   "profile.nanopi-r6s": "NanoPi R6S (completo)",
   "profile.glinet": "GL.iNet (leggero)",
-  "progress": "{n} di {total} fatti",
+  "progress": "{n} di {total} completati",
   "copy": "Copia",
   "copied": "Copiato",
   "does.check": "Controlla che sia un router OpenWrt arm64 con Docker, online e con spazio sufficiente",
   "does.download": "Scarica AirplaneMode in {dir} e applica il profilo {profile}",
-  "does.login": "Crea un accesso al router, {user}, che può cambiare le impostazioni Wi-Fi e nient'altro",
+  "does.login": "Crea sul router un utente, {user}, che può cambiare le impostazioni Wi-Fi e nient'altro",
   "does.name": "Fa puntare il nome {name} a {ip} e dà la precedenza all'Ethernet sul Wi-Fi",
-  "does.rebind-off": "Disattiva la protezione dal DNS rebinding così le pagine di accesso degli hotel si caricano",
+  "does.rebind-off": "Disattiva la protezione dal DNS rebinding perché le pagine di accesso degli hotel si carichino",
   "does.rebind-on": "Lascia attiva la protezione dal DNS rebinding",
   "does.wireguard": "Installa WireGuard per la VPN di casa",
   "does.no-wireguard": "Salta WireGuard",

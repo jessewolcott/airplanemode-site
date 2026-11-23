@@ -30,7 +30,7 @@
   <div class="wrap">
     <a class="brand" href="#"><img src="../assets/icon.svg" alt="" width="30" height="30"><b style="font-weight:inherit">Airplane<span>Mode</span></b></a>
     <nav>
-      <a href="#features" class="hide-sm">Fonctions</a>
+      <a href="#features" class="hide-sm">Fonctionnalités</a>
       <a href="#setup">Installer</a>
       <a href="#apps" class="hide-sm">Applis</a>
       <a class="gh" href="https://github.com/jessewolcott/airplanemode">GitHub</a>
@@ -76,7 +76,7 @@
     <div class="wrap">
       <div class="eyebrow">Ce qu'il fait</div>
       <h2 class="title">Conçu pour les hôtels, les aéroports et les avions</h2>
-      <p class="sub">Tout tourne sur le boîtier. Vos appareils rejoignent un réseau qui vous appartient, et le boîtier s'occupe du reste.</p>
+      <p class="sub">Tout tourne sur le routeur. Vos appareils rejoignent un réseau qui vous appartient, et le routeur s'occupe du reste.</p>
       <div class="features">
         <div class="feature">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1"/><path d="M2 9a14 14 0 0 1 20 0"/></svg>
@@ -91,11 +91,11 @@
         <div class="feature">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 10l3 3-3 3M13 16h3"/></svg>
           <h3>Des applis sans Internet</h3>
-          <p>Jeux de cartes entre amis sur le point d'accès, quiz de voyage, fictions interactives, films, partage de fichiers, Wikivoyage hors ligne et un modèle de langage intégré au boîtier.</p>
+          <p>Jeux de cartes entre amis sur le point d'accès, quiz de voyage, fictions interactives, films, partage de fichiers, Wikivoyage hors ligne et un modèle de langage intégré au routeur.</p>
         </div>
         <div class="feature">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
-          <h3>Votre VPN maison</h3>
+          <h3>Votre VPN domestique</h3>
           <p>Collez une configuration WireGuard et tout passe par elle. L'hôtel ne voit que du trafic chiffré.</p>
         </div>
         <div class="feature">
@@ -115,10 +115,10 @@
   <section class="block" id="setup">
     <div class="wrap">
       <div class="eyebrow">Installer</div>
-      <h2 class="title">Du carton au point d'accès en une demi-heure environ</h2>
+      <h2 class="title">Du déballage au point d'accès en une demi-heure environ</h2>
       <p class="sub">Choisissez votre routeur. Cochez les étapes au fur et à mesure : cette page se souvient d'où vous en êtes.</p>
 
-      <div class="devices" role="tablist" aria-label="Choix du routeur">
+      <div class="devices" role="tablist" aria-label="Routeur">
         <button class="device" role="tab" id="tab-r6s" aria-controls="guide-r6s" aria-selected="true" data-device="nanopi-r6s">
           <span class="name">NanoPi R6S <span class="pill full">Complet</span></span>
           <span class="desc">Tout, y compris le modèle de langage embarqué. Nécessite deux adaptateurs Wi-Fi USB.</span>
@@ -129,7 +129,7 @@
         </button>
       </div>
 
-      <div class="progress"><span id="progText">0 sur 0 faites</span><span class="bar"><i id="progBar"></i></span><button class="check" id="reset" type="button" style="background:none;border:0;font:inherit;color:inherit">réinitialiser</button></div>
+      <div class="progress"><span id="progText">0 sur 0 terminées</span><span class="bar"><i id="progBar"></i></span><button class="check" id="reset" type="button" style="background:none;border:0;font:inherit;color:inherit">réinitialiser</button></div>
 
       <!-- ===================== NanoPi R6S ===================== -->
       <div class="guide" id="guide-r6s" role="tabpanel" aria-labelledby="tab-r6s" data-device="nanopi-r6s">
@@ -141,7 +141,7 @@
                 <tr><td>NanoPi R6S, 8 GB</td><td>L'appareil lui-même. Prenez la version avec boîtier métallique : c'est lui qui sert de dissipateur.</td></tr>
                 <tr><td>2 × adaptateur Wi-Fi USB</td><td>Le R6S n'a pas de Wi-Fi. MediaTek uniquement : p. ex. ALFA AWUS036ACM (MT7612U) pour le point d'accès, AWUS036ACHM (MT7610U) pour le réseau de l'hôtel.</td></tr>
                 <tr><td>Alimentation USB-C 5 V / 3 A</td><td>Ou une batterie externe USB-C PD.</td></tr>
-                <tr><td>Carte microSD de 8 Go ou plus</td><td>Seulement pour le flashage, une fois.</td></tr>
+                <tr><td>Carte microSD de 8 Go ou plus</td><td>Ne sert qu'une fois, pour le flashage.</td></tr>
                 <tr><td>Petite rallonge USB</td><td>Facultatif. Éloigne l'un des adaptateurs du boîtier.</td></tr>
               </table>
             </div>
@@ -151,7 +151,7 @@
             <div class="step-body">
               <p>FriendlyWrt est l'OpenWrt de FriendlyElec, avec Docker intégré.</p>
               <ol>
-                <li>Ouvrez <a href="http://download.friendlyelec.com/NanoPiR6S" rel="noopener">la page de téléchargement de FriendlyElec</a> → <code>01_Official images</code> → <code>02_SD-to-eMMC images</code>, puis téléchargez le fichier nommé comme <code>rk3588-eflasher-friendlywrt-…-docker-….img.gz</code>. <b>Prenez celui qui a <code>docker</code> dans son nom.</b></li>
+                <li>Ouvrez <a href="http://download.friendlyelec.com/NanoPiR6S" rel="noopener">la page de téléchargement de FriendlyElec</a> → <code>01_Official images</code> → <code>02_SD-to-eMMC images</code>, puis téléchargez le fichier dont le nom ressemble à <code>rk3588-eflasher-friendlywrt-…-docker-….img.gz</code>. <b>Prenez celui qui a <code>docker</code> dans son nom.</b></li>
                 <li>Écrivez-le sur la carte microSD avec <a href="https://etcher.balena.io/" rel="noopener">balenaEtcher</a> (il accepte directement le <code>.gz</code>). Sous Windows, l'outil indiqué par FriendlyElec est Win32 Disk Imager : décompressez d'abord l'image.</li>
                 <li>Insérez la carte dans le R6S et allumez-le. Il s'installe tout seul sur l'eMMC. Surveillez le voyant rouge <b>SYS</b> :</li>
               </ol>
@@ -166,7 +166,7 @@
             <div class="step-head"><h3>Se connecter une fois et le mettre en ligne</h3><label class="check"><input type="checkbox"> fait</label></div>
             <div class="step-body">
               <ol>
-                <li>Branchez votre ordinateur sur le port marqué <b>LAN</b>, et un câble venant de votre box sur le port marqué <b>WAN</b>.</li>
+                <li>Branchez votre ordinateur sur le port marqué <b>LAN</b>, et un câble venant de votre box Internet sur le port marqué <b>WAN</b>.</li>
                 <li>Ouvrez <a href="http://192.168.2.1/" rel="noopener">http://192.168.2.1</a>. Connectez-vous en <code>root</code> avec le mot de passe <code>password</code> (sur certaines versions, laissez-le vide).</li>
                 <li>Définissez votre propre mot de passe root : <b>System → Administration</b>. Il reste le vôtre ; AirplaneMode reçoit son propre compte, aux droits limités.</li>
               </ol>
@@ -226,7 +226,7 @@
             </div>
           </li>
           <li data-step="gl-done">
-            <div class="step-head"><h3>Nommer votre point d'accès, et choisir un seul répéteur</h3><label class="check"><input type="checkbox"> fait</label></div>
+            <div class="step-head"><h3>Nommer votre point d'accès et choisir un seul répéteur</h3><label class="check"><input type="checkbox"> fait</label></div>
             <div class="step-body">
               <p>Ouvrez <a class="admin-link" href="http://airplane.mode:8080/admin/" rel="noopener">http://airplane.mode:8080/admin/</a> et connectez-vous. GL.iNet a sa propre page de répéteur, qui modifie aussi le Wi-Fi amont : utilisez soit celle-ci, soit le panneau <b>Internet source</b> d'AirplaneMode, pas les deux.</p>
             </div>
@@ -238,7 +238,7 @@
 
   <section class="block" id="apps">
     <div class="wrap">
-      <div class="eyebrow">Les applis du boîtier</div>
+      <div class="eyebrow">Les applis embarquées</div>
       <h2 class="title">De quoi s'occuper à 10 000 mètres d'altitude</h2>
       <p class="sub">Dix applis pour l'instant. Chacune est un projet open source à part entière et s'ajoute sous forme de conteneur.</p>
       <div class="apps">
@@ -248,7 +248,7 @@
         </a>
         <a class="app" href="https://github.com/jessewolcott/airplanemode-gatechange">
           <img class="ico" src="../assets/icons/gatechange.svg" alt="" width="46" height="46" loading="lazy">
-          <span><h3>Gate Change</h3><p>Un jeu de cartes rapide, couleurs et chiffres, de 2 à 8 joueurs. Affrontez vos amis sur le point d'accès, chacun sur son téléphone, ou des bots.</p><span class="tag">Jeux</span></span>
+          <span><h3>Gate Change</h3><p>Un jeu de cartes rapide, de couleurs et de chiffres, pour 2 à 8 joueurs. Affrontez vos amis sur le point d'accès, chacun sur son téléphone, ou des bots.</p><span class="tag">Jeux</span></span>
         </a>
         <a class="app" href="https://github.com/jessewolcott/airplanemode-passport">
           <img class="ico" src="../assets/icons/passport.svg" alt="" width="46" height="46" loading="lazy">
@@ -305,8 +305,8 @@
         <div class="hint">Laissez vide, sauf si vous avez changé le sous-réseau LAN du routeur.</div>
       </div>
       <div class="field" style="display:grid;gap:12px;align-content:start">
-        <label class="toggle"><input type="checkbox" id="t-vpn" checked><span>VPN maison<small>Installe WireGuard pour que vous puissiez passer par un tunnel jusqu'à chez vous.</small></span></label>
-        <label class="toggle"><input type="checkbox" id="t-rebind" checked><span>Faire marcher les pages de connexion des hôtels<small>Désactive la protection contre le DNS rebinding, qui en bloque beaucoup.</small></span></label>
+        <label class="toggle"><input type="checkbox" id="t-vpn" checked><span>VPN domestique<small>Installe WireGuard pour que vous puissiez passer par un tunnel jusqu'à chez vous.</small></span></label>
+        <label class="toggle"><input type="checkbox" id="t-rebind" checked><span>Faire fonctionner les pages de connexion des hôtels<small>Désactive la protection contre le DNS rebinding, qui en bloque beaucoup.</small></span></label>
       </div>
       <details class="adv">
         <summary>Avancé</summary>
@@ -339,16 +339,16 @@
   "device.glinet": "GL.iNet · profil allégé",
   "profile.nanopi-r6s": "NanoPi R6S (complet)",
   "profile.glinet": "GL.iNet (allégé)",
-  "progress": "{n} sur {total} faites",
+  "progress": "{n} sur {total} terminées",
   "copy": "Copier",
   "copied": "Copié",
   "does.check": "Vérifie qu'il s'agit d'un routeur OpenWrt arm64 avec Docker, en ligne, avec assez d'espace",
   "does.download": "Télécharge AirplaneMode dans {dir} et applique le profil {profile}",
-  "does.login": "Crée un compte routeur, {user}, qui peut modifier les réglages Wi-Fi et rien d'autre",
+  "does.login": "Crée sur le routeur un compte, {user}, qui peut modifier les réglages Wi-Fi et rien d'autre",
   "does.name": "Fait pointer le nom {name} vers {ip} et donne la priorité à l'Ethernet sur le Wi-Fi",
   "does.rebind-off": "Désactive la protection contre le DNS rebinding pour que les pages de connexion des hôtels se chargent",
-  "does.rebind-on": "Garde la protection contre le DNS rebinding",
-  "does.wireguard": "Installe WireGuard pour le VPN maison",
+  "does.rebind-on": "Laisse activée la protection contre le DNS rebinding",
+  "does.wireguard": "Installe WireGuard pour le VPN domestique",
   "does.no-wireguard": "N'installe pas WireGuard",
   "does.apps-model": "Télécharge et démarre les applis et le modèle de langage, puis vérifie que le panneau d'administration peut piloter le routeur",
   "does.apps": "Télécharge et démarre les applis, puis vérifie que le panneau d'administration peut piloter le routeur",
