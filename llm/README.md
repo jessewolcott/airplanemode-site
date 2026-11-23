@@ -7,7 +7,9 @@ that date; if the code and these notes disagree, the code wins.
 ## Overview
 
 `airplanemode-site` is the public front of the AirplaneMode travel-router project: one
-static homepage (`index.html`, inline CSS and JS, no build step, images in `assets/`) and a
+static homepage in seven languages (English `index.html` is the source; `es/ fr/ it/ zh/
+ja/ vi/` are generated from it by `tools/build_i18n.py`; shared `assets/site.css` and
+`assets/site.js`, images in `assets/`) and a
 one-line installer (`install.sh`) that a user pipes into `sh` on the router. The page sells
 the project, walks a user through setting up a NanoPi R6S or a GL.iNet router step by step,
 and builds the exact install command with a small config tool. The installer is a **thin
@@ -24,6 +26,7 @@ superseded 0012), and the install command fetches `https://airplanemode.xin/inst
 | File | What it covers |
 |---|---|
 | [installer.md](installer.md) | `install.sh` function by function: `main()`, options, preflight conditions, device and LAN detection, curl vs wget, git vs tarball, `.env`, the platform scripts, the router-API probe, the summary |
+| [i18n.md](i18n.md) | the translations: how the generator finds strings, `i18n/<lang>.json`, the allowlist, the language switcher and hint, the check's rules, how to change the page |
 | [page.md](page.md) | `index.html`: layout, device tabs, step checklist (localStorage), the config tool and command builder, install-URL derivation, copy buttons, responsive rules |
 | [testing.md](testing.md) | CI (`.github/workflows/check.yml`), `tests/openwrt-run.sh`, `tests/docker-stub`, what is and isn't covered, running it locally |
 | [hosting.md](hosting.md) | Hosting history and status, local preview, how to deploy to its own server later and the exact list of things to change then |
@@ -33,14 +36,18 @@ superseded 0012), and the install command fetches `https://airplanemode.xin/inst
 
 | Path | Role |
 |---|---|
-| `index.html` | the whole homepage (609 lines; CSS `index.html:16-181`, markup `183-474`, JS `476-607`) |
+| `index.html` | the English homepage, hand-edited, the source of the translations (markup, the tool `<template>`, the `#ui-strings` JSON) |
+| `es/` `fr/` `it/` `zh/` `ja/` `vi/` | generated translated pages (`index.html` each); never edit by hand |
+| `assets/site.css`, `assets/site.js` | style and behaviour shared by all seven pages |
+| `i18n/<lang>.json`, `i18n/allowlist.json` | translations (English text -> translation) and the names/commands that stay English |
+| `tools/build_i18n.py`, `tools/check_i18n.py` | the generator and the CI check (stdlib Python) |
 | `install.sh` | the installer (292 lines; `main()` at `install.sh:262`, invoked at `install.sh:291-292`) |
 | `assets/` | `icon.svg`, `apple-touch-icon.png`, screenshots copied from the platform repo (`portal/`, `docs/screenshots/`) |
 | `tests/openwrt-run.sh` | CI test script, runs inside the OpenWrt container |
 | `tests/docker-stub` | fake `docker` binary bind-mounted over `/usr/bin/docker` in the test |
-| `.github/workflows/check.yml` | CI: shellcheck + the OpenWrt container test, then (on `main`) the GitHub Pages deploy |
+| `.github/workflows/check.yml` | CI: shellcheck + the OpenWrt container test, the translation check, then (on `main`) the GitHub Pages deploy |
 | `CNAME` | the Pages custom domain, `airplanemode.xin` |
-| `.gitattributes` | forces LF for `*.sh` and `tests/docker-stub` (they run on Linux) |
+| `.gitattributes` | forces LF for `*.sh` and `tests/docker-stub` (they run on Linux), and for html/css/js/json/py (so the render comparison is byte-exact) |
 | `.nojekyll` | leftover from the branch-built Pages period; harmless (the site is built by Actions now) |
 | `README.md`, `CLAUDE.md` | human and Claude notes; `CLAUDE.md` holds the working rules |
 
@@ -67,3 +74,5 @@ superseded 0012), and the install command fetches `https://airplanemode.xin/inst
   dark, amber `#f2b34b`).
 - Keep the site on its own domain with Enforce HTTPS on (decision 0019).
 - Mark anything not verified on hardware as untested.
+- Change the homepage in English, update all six translations, run `tools/build_i18n.py` and
+  `tools/check_i18n.py` (CI fails if they don't match).

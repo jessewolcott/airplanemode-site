@@ -8,7 +8,10 @@ Live at **https://airplanemode.xin** (GitHub Pages with its own domain, platform
 
 | File | What it is |
 |---|---|
-| `index.html` | the homepage: features, apps, and a step-by-step setup guide per device (NanoPi R6S, GL.iNet) with a config tool that builds your install command |
+| `index.html` | the homepage (English, the source): features, apps, and a step-by-step setup guide per device (NanoPi R6S, GL.iNet) with a config tool that builds your install command |
+| `es/` `fr/` `it/` `zh/` `ja/` `vi/` | the translated homepages, generated from `index.html` + `i18n/<lang>.json` by `tools/build_i18n.py` (don't edit them) |
+| `assets/site.css`, `assets/site.js` | the style and behaviour every language's page shares |
+| `i18n/`, `tools/` | translations, the allowlist of names that stay English, the generator and the check |
 | `install.sh` | the installer the command runs on the router |
 | `assets/` | icon and screenshots (copied from the platform repo's `portal/` and `docs/screenshots/`) |
 | `tests/` | runs the installer inside an OpenWrt 24.10 arm64 container with a stub Docker (CI) |
@@ -41,6 +44,10 @@ The installer is a thin wrapper: router logic stays in the platform repo's scrip
 there's one place to change it.
 
 ## Develop
+
+Changing the homepage: change English `index.html`, update all six translations in
+`i18n/<lang>.json` (`python tools/build_i18n.py --sync-keys` adds new strings as null), run
+`python tools/build_i18n.py` and `python tools/check_i18n.py`. CI fails if they don't match.
 
 ```sh
 python -m http.server 8091      # then http://localhost:8091 (port 8000 is reserved on Windows)

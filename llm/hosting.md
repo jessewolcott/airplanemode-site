@@ -10,7 +10,8 @@ decision 0019).
   (TXT `_github-pages-challenge-jessewolcott`), so no other repo can claim it.
 - Pages is built by **GitHub Actions** (`build_type: workflow`): the `pages` job in
   `.github/workflows/check.yml` runs on pushes to `main`, after the installer job passes,
-  and publishes only `index.html`, `install.sh`, `assets/` and `CNAME`. The custom domain is
+  and publishes only `index.html`, the language folders `es/ fr/ it/ zh/ ja/ vi/`,
+  `install.sh`, `assets/` and `CNAME` (the translation check job must pass too). The custom domain is
   set in the repo's Pages settings (with an Actions build the `CNAME` file is informational).
 - **Enforce HTTPS** must stay on.
 
@@ -39,7 +40,7 @@ python -m http.server 8091    # then http://localhost:8091
 ```
 
 Over http the page uses `FALLBACK_URL` (raw GitHub) for the command
-(`index.html:480-481`). The relative "read the script" and footer `install.sh` links serve
+(`installUrl` in `assets/site.js`). The relative "read the script" and footer `install.sh` links serve
 the local file.
 
 ## Why HTTPS only
@@ -52,7 +53,7 @@ falls back to GitHub over https. A plain-http deployment would still show a work
 
 ## Moving off Pages (if ever)
 
-The site is fully static; any HTTPS static server works. Publish the same four things
-(`index.html`, `install.sh` next to it, `assets/`), serve `install.sh` as plain text with
+The site is fully static; any HTTPS static server works. Publish the same things
+(`index.html`, the language folders, `install.sh` next to it, `assets/`), serve `install.sh` as plain text with
 no HTML 404 pages, keep http -> https, and point the DNS there. The page needs no change.
 Turn Pages off **and** remove the DNS records that point at GitHub together.

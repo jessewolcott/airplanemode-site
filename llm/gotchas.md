@@ -46,11 +46,19 @@
 
 ## Page
 
+- **Never edit `es/ fr/ it/ zh/ ja/ vi/index.html`.** They're generated; the check fails on
+  any hand edit. Change English, then `i18n/<lang>.json`, then run the generator (i18n.md).
+- **A translation keeps the English unit's inline elements in the same order** (`<b>`,
+  `<a href>`, `<code>`...): the check compares element order. Reword around them instead.
+- **Relative URLs get `../` on the translated pages.** Don't build URLs in JS from
+  `location.href`; use `SITE_ROOT` (the folder above `assets/site.js`).
+
 - **Option names live in two places**: `install.sh` `main()` and `index.html` `render()`.
   Rename or add in both, plus README and `usage()`.
 - **New device = four places**: `detect_device`, the `case` at `install.sh:117` (and the
   docker hint / free-space need), a `.device` tab + `.guide` with `data-device` and
-  `data-step` ids in `index.html`, and a `DEVICES` entry (label + default IP). The guide's
+  `data-step` ids in `index.html`, and a `DEVICES` entry in `assets/site.js` (default IP; label and profile name are
+  `device.<id>` / `profile.<id>` in `#ui-strings`), then the translations. The guide's
   install step needs a `.tool-slot`.
 - **The tool is one DOM node that moves between guides.** Don't clone it per guide; ids
   (`#t-lan` etc.) would duplicate and saved state would split.
@@ -63,7 +71,8 @@
   shows the raw GitHub URL; that is expected, not a bug.
 - **Clipboard API needs a secure context.** On plain http (non-localhost) copy falls back to
   `execCommand("copy")`.
-- **localStorage keys** `am.device`, `am.opts`, `am.done` persist per browser; renaming
+- **localStorage keys** `am.device`, `am.opts`, `am.done` (shared by all languages),
+  `am.lang`, `am.langHint` persist per browser; renaming
   step ids or option keys leaves stale entries (harmless).
 - **Static values duplicated**: default IPs (`192.168.2.1`, `192.168.8.1`) in `DEVICES`, in
   guide text, and in the platform profiles; port 8080 in the admin links. Keep consistent if

@@ -1,0 +1,24 @@
+{
+  "_about": "Names and commands that stay as they are in every language (tools/build_i18n.py skips text made only of these; tools/check_i18n.py doesn't count them as leftover English). 'same' lists, per language, whole strings whose correct translation happens to equal the English.",
+  "names": [
+    "AirplaneMode", "Airplane", "Mode", "GitHub", "OpenWrt", "FriendlyWrt", "FriendlyElec", "Docker", "LuCI",
+    "NanoPi R6S", "R6S", "GL.iNet", "Flint 2", "GL-MT6000", "ALFA", "AWUS036ACM", "AWUS036ACHM", "MT7612U", "MT7610U",
+    "MediaTek", "USB-C", "USB", "PD", "eMMC", "microSD", "SD", "balenaEtcher", "Win32 Disk Imager", "Windows", "Mac",
+    "PowerShell", "Terminal", "Wi-Fi", "WireGuard", "VPN", "DNS", "LAN", "WAN", "SYS", "MIPS", "arm64", "RAM", "GB",
+    "Ethernet", "Wikivoyage", "Freedoom", "WADs", "Layover",
+    "The Dark Light", "Dark Light", "Drop", "Cinema", "QuickShot", "Doom", "Gate Change", "Passport", "Wayfarer",
+    "The Couch", "Couch", "Travel Guide",
+    "System → Administration", "Network → Wireless", "Network → Interfaces", "Applications → Network Storage",
+    "Internet source",
+    "install.sh", "wan", "/opt/airplanemode", "root", "password", "ssh", "http", "https",
+    "English", "Español", "Français", "Italiano", "Tiếng Việt"
+  ],
+  "same": {
+    "es": ["Apps"],
+    "fr": [],
+    "it": [],
+    "zh": [],
+    "ja": [],
+    "vi": []
+  }
+}

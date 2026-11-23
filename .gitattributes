@@ -1,3 +1,10 @@
 # install.sh runs on the router: keep Unix line endings even when checked out on Windows.
 *.sh text eol=lf
 tests/docker-stub text eol=lf
+# The site and its tools: LF everywhere, so tools/check_i18n.py's "committed page equals a
+# fresh render" compares the same bytes on Windows and in CI.
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.py text eol=lf

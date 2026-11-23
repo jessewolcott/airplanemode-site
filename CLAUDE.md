@@ -2,18 +2,27 @@
 
 Public homepage + one-line installer for AirplaneMode. Served at **https://airplanemode.xin**
 by GitHub Pages under its own domain (platform decision 0019, superseding 0012): the `pages`
-job in `.github/workflows/check.yml` publishes `index.html`, `install.sh`, `assets/` and `CNAME`
-on pushes to `main` that pass the installer checks. The page builds its command from the
+job in `.github/workflows/check.yml` publishes `index.html`, the six translations (`es/ fr/ it/
+zh/ ja/ vi/`), `install.sh`, `assets/` and `CNAME` on pushes to `main` that pass the installer
+and translation checks. The page builds its command from the
 address that serves it over https. Keep **Enforce HTTPS** on (`curl | sh`). The old raw GitHub
 URL of `install.sh` still works for anyone who copied it, so keep `main`'s copy working.
 Platform notes live in `../airplanemode/CLAUDE.md`. Read those first.
 
-- Plain static site: `index.html` (inline CSS/JS, no build), `assets/`, `install.sh`. Keep
+- Static site: `index.html` (English, hand-edited, the source of truth), shared
+  `assets/site.css` + `assets/site.js`, `assets/`, `install.sh`. Keep
   the look in step with the box's landing page (`../airplanemode/portal/index.html`: dark,
   amber `#f2b34b`). Screenshots and icon are copies; refresh them when the platform's change.
 - The **apps** section mirrors the platform's `portal/apps.json`: same names, descriptions and
   categories, icons copied into `assets/icons/`, each card linking to the app's repo. When an
   app is added or its description changes there, update the card here too.
+- **Languages** (en at `/`, es fr it zh ja vi in their folders). The translated pages are
+  generated: never edit `<lang>/index.html`. **To change the homepage: change English
+  `index.html`, update all six translations in `i18n/<lang>.json` (`python tools/build_i18n.py
+  --sync-keys` adds the new English strings as null), run `python tools/build_i18n.py`, then
+  `python tools/check_i18n.py`; CI fails if they don't match.** Strings the JS writes live in
+  the page's `<script id="ui-strings">`. Names and commands that stay English:
+  `i18n/allowlist.json`. Details: `llm/i18n.md`.
 - `install.sh` must stay POSIX sh that runs under OpenWrt's busybox ash, and stays a **thin
   wrapper**: router changes belong in the platform's `scripts/router-setup.sh`, not here.
   Everything runs from `main()` at the bottom (a half-downloaded script does nothing).

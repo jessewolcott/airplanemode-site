@@ -1,6 +1,8 @@
 # Testing
 
-There is no browser test for the page; testing covers `install.sh` only.
+There is no browser test for the page. CI tests `install.sh` (job `installer`) and that the
+translated pages are in step with English (job `i18n`, `tools/check_i18n.py`, rules in
+[i18n.md](i18n.md)).
 
 ## CI: `.github/workflows/check.yml`
 
@@ -120,6 +122,9 @@ bind mount. Line endings: `.gitattributes` forces LF on `*.sh` and `tests/docker
 CRLF the scripts would fail under ash.
 
 Shellcheck locally: `shellcheck -s sh -e SC2046,SC2086 install.sh tests/openwrt-run.sh`.
+
+Translation check: `python tools/check_i18n.py` (also compares the English app cards with
+`../airplanemode/portal/apps.json` when that sibling repo is there).
 
 Manual page check: `python -m http.server 8091` and open `http://localhost:8091` (port 8000
 is reserved by Windows on the dev machine). Over http the command uses the raw GitHub URL.

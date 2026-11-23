@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0d0f12">
+<title>AirplaneMode: un router da viaggio con le sue app</title>
+<meta name="description" content="Un router da viaggio che si porta dietro le sue app. Un solo accesso al Wi-Fi dell'hotel per tutti i tuoi dispositivi, si riconnette da solo e fa girare giochi, strumenti e un piccolo modello linguistico senza alcuna connessione a internet.">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta property="og:title" content="AirplaneMode">
+<meta property="og:description" content="Un router da viaggio che si porta dietro le sue app.">
+<meta property="og:image" content="https://airplanemode.xin/assets/landing-online.png">
+<meta property="og:url" content="https://airplanemode.xin/it/">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="canonical" href="https://airplanemode.xin/it/">
+<link rel="alternate" hreflang="en" href="https://airplanemode.xin/">
+<link rel="alternate" hreflang="es" href="https://airplanemode.xin/es/">
+<link rel="alternate" hreflang="fr" href="https://airplanemode.xin/fr/">
+<link rel="alternate" hreflang="it" href="https://airplanemode.xin/it/">
+<link rel="alternate" hreflang="zh-Hans" href="https://airplanemode.xin/zh/">
+<link rel="alternate" hreflang="ja" href="https://airplanemode.xin/ja/">
+<link rel="alternate" hreflang="vi" href="https://airplanemode.xin/vi/">
+<link rel="alternate" hreflang="x-default" href="https://airplanemode.xin/">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#"><img src="../assets/icon.svg" alt="" width="30" height="30"><b style="font-weight:inherit">Airplane<span>Mode</span></b></a>
+    <nav>
+      <a href="#features" class="hide-sm">Funzioni</a>
+      <a href="#setup">Configura</a>
+      <a href="#apps" class="hide-sm">App</a>
+      <a class="gh" href="https://github.com/jessewolcott/airplanemode">GitHub</a>
+    </nav>
+    <details class="langs">
+      <summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><span class="sr">Lingua: </span><span id="lang-now">Italiano</span></summary>
+      <!-- The same on every page: each language in its own name. data-hint is the suggestion
+           shown to visitors whose browser prefers that language. -->
+      <ul translate="no">
+        <li><a href="../" hreflang="en" lang="en" data-hint="This page is also in English">English</a></li>
+        <li><a href="../es/" hreflang="es" lang="es" data-hint="Esta página también está en español">Español</a></li>
+        <li><a href="../fr/" hreflang="fr" lang="fr" data-hint="Cette page existe aussi en français">Français</a></li>
+        <li><a href="../it/" hreflang="it" lang="it" data-hint="Questa pagina è disponibile anche in italiano">Italiano</a></li>
+        <li><a href="../zh/" hreflang="zh-Hans" lang="zh-Hans" data-hint="本页面也有中文版">中文</a></li>
+        <li><a href="../ja/" hreflang="ja" lang="ja" data-hint="このページは日本語でも読めます">日本語</a></li>
+        <li><a href="../vi/" hreflang="vi" lang="vi" data-hint="Trang này cũng có bản tiếng Việt">Tiếng Việt</a></li>
+      </ul>
+    </details>
+  </div>
+</header>
+<div class="lang-hint" id="lang-hint" hidden><a href="../" translate="no">English</a><button type="button" aria-label="Chiudi">×</button></div>
+
+<main>
+  <div class="wrap hero">
+    <div>
+      <div class="eyebrow">Router da viaggio open source</div>
+      <h1>Il tuo Wi-Fi, ovunque. <em>App che volano offline.</em></h1>
+      <p class="lead">AirplaneMode trasforma un piccolo router in un hotspot privato. Accede al Wi-Fi dell'hotel una volta sola per tutti i dispositivi, si riconnette da solo e fa girare giochi, strumenti e un piccolo modello linguistico senza alcuna connessione a internet.</p>
+      <div class="btns">
+        <a class="btn primary" href="#setup">Configurane uno <span aria-hidden="true">→</span></a>
+        <a class="btn ghost" href="https://github.com/jessewolcott/airplanemode">Leggi il codice</a>
+      </div>
+      <p class="note"><b>Siamo agli inizi.</b> Tutto è testato su un vero OpenWrt in Docker; il primo hardware è in arrivo.</p>
+    </div>
+    <div class="phones" aria-hidden="true">
+      <img src="../assets/landing-signin.png" alt="" loading="lazy">
+      <img src="../assets/landing-online.png" alt="">
+      <img src="../assets/guide-ask.png" alt="" loading="lazy">
+    </div>
+  </div>
+
+  <section class="block" id="features">
+    <div class="wrap">
+      <div class="eyebrow">Cosa fa</div>
+      <h2 class="title">Pensato per hotel, aeroporti e aerei</h2>
+      <p class="sub">Tutto gira sul router. I tuoi dispositivi si collegano a una rete che è solo tua, e al resto ci pensa lui.</p>
+      <div class="features">
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1"/><path d="M2 9a14 14 0 0 1 20 0"/></svg>
+          <h3>Un solo accesso per tutti</h3>
+          <p>Una persona accetta la pagina delle condizioni dell'hotel e tutti i telefoni, portatili e tablet sono online. Niente da pagare per ogni dispositivo.</p>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>
+          <h3>Si riconnette da solo</h3>
+          <p>Ricorda le reti e ci si ricollega. Collega il cavo Ethernet della camera e verrà usato per primo.</p>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 10l3 3-3 3M13 16h3"/></svg>
+          <h3>App senza internet</h3>
+          <p>Giochi di carte con gli amici sull'hotspot, quiz di viaggio, avventure testuali, film, condivisione di file, Wikivoyage offline e un modello linguistico integrato nel router.</p>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+          <h3>La tua VPN di casa</h3>
+          <p>Incolla una configurazione WireGuard e tutto il traffico ci passa attraverso. L'hotel vede solo traffico cifrato.</p>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg>
+          <h3>Dispositivi e consumo di dati</h3>
+          <p>Guarda chi è connesso e quanti dati ha consumato ogni rete. Metti in pausa il tablet che fa streaming tutta la notte.</p>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          <h3>Privilegi minimi</h3>
+          <p>Il pannello di amministrazione controlla il router con un accesso limitato alle impostazioni Wi-Fi. Mai come root.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="setup">
+    <div class="wrap">
+      <div class="eyebrow">Configura</div>
+      <h2 class="title">Dalla scatola all'hotspot in circa mezz'ora</h2>
+      <p class="sub">Scegli il tuo router. Spunta i passaggi man mano: questa pagina ricorda a che punto sei.</p>
+
+      <div class="devices" role="tablist" aria-label="Scegli il router">
+        <button class="device" role="tab" id="tab-r6s" aria-controls="guide-r6s" aria-selected="true" data-device="nanopi-r6s">
+          <span class="name">NanoPi R6S <span class="pill full">Completo</span></span>
+          <span class="desc">Tutto, compreso il modello linguistico integrato. Servono due adattatori Wi-Fi USB.</span>
+        </button>
+        <button class="device" role="tab" id="tab-glinet" aria-controls="guide-glinet" aria-selected="false" data-device="glinet">
+          <span class="name">Router da viaggio GL.iNet <span class="pill">Leggero</span></span>
+          <span class="desc">Modelli arm64 con 1 GB di RAM (ad es. Flint 2). Wi-Fi integrato. Niente modello linguistico, quindi niente Dark Light, Travel Guide o Couch.</span>
+        </button>
+      </div>
+
+      <div class="progress"><span id="progText">0 di 0 fatti</span><span class="bar"><i id="progBar"></i></span><button class="check" id="reset" type="button" style="background:none;border:0;font:inherit;color:inherit">azzera</button></div>
+
+      <!-- ===================== NanoPi R6S ===================== -->
+      <div class="guide" id="guide-r6s" role="tabpanel" aria-labelledby="tab-r6s" data-device="nanopi-r6s">
+        <ol class="steps">
+          <li data-step="r6s-parts">
+            <div class="step-head"><h3>Procurati i componenti</h3><label class="check"><input type="checkbox"> fatto</label></div>
+            <div class="step-body">
+              <table class="parts">
+                <tr><td>NanoPi R6S, 8 GB</td><td>Il dispositivo vero e proprio. Prendi il case in metallo: fa da dissipatore.</td></tr>
+                <tr><td>2 × adattatore Wi-Fi USB</td><td>L'R6S non ha il Wi-Fi. Solo MediaTek: ad es. ALFA AWUS036ACM (MT7612U) per l'hotspot, AWUS036ACHM (MT7610U) per la rete dell'hotel.</td></tr>
+                <tr><td>Alimentatore USB-C da 5 V / 3 A</td><td>Oppure un power bank USB-C PD.</td></tr>
+                <tr><td>Scheda microSD da 8 GB o più</td><td>Serve solo per il flash, una volta.</td></tr>
+                <tr><td>Prolunga USB corta</td><td>Facoltativa. Tiene uno degli adattatori lontano dal case.</td></tr>
+              </table>
+            </div>
+          </li>
+          <li data-step="r6s-flash">
+            <div class="step-head"><h3>Installa FriendlyWrt sulla eMMC</h3><label class="check"><input type="checkbox"> fatto</label></div>
+            <div class="step-body">
+              <p>FriendlyWrt è l'OpenWrt di FriendlyElec, con Docker già incluso.</p>
+              <ol>
+                <li>Apri <a href="http://download.friendlyelec.com/NanoPiR6S" rel="noopener">la pagina di download di FriendlyElec</a> → <code>01_Official images</code> → <code>02_SD-to-eMMC images</code> e scarica il file con un nome tipo <code>rk3588-eflasher-friendlywrt-…-docker-….img.gz</code>. <b>Scegli quello con <code>docker</code> nel nome.</b></li>
+                <li>Scrivilo sulla scheda microSD con <a href="https://etcher.balena.io/" rel="noopener">balenaEtcher</a> (accetta direttamente il <code>.gz</code>). Su Windows, lo strumento indicato da FriendlyElec è Win32 Disk Imager: prima decomprimi l'immagine.</li>
+                <li>Inserisci la scheda nell'R6S e accendilo. Si installa da solo sulla eMMC. Osserva la spia rossa <b>SYS</b>:</li>
+              </ol>
+              <div class="leds">
+                <span class="led"><i class="fast"></i>lampeggio veloce</span><span>installazione in corso, qualche minuto</span>
+                <span class="led"><i class="slow"></i><i class="g"></i>lento + verde</span><span>fatto: SYS lampeggia lentamente e le spie WAN/LAN restano accese</span>
+              </div>
+              <ol start="4"><li>Stacca l'alimentazione, <b>togli la scheda</b> e riaccendi. Ora si avvia dalla eMMC.</li></ol>
+            </div>
+          </li>
+          <li data-step="r6s-login">
+            <div class="step-head"><h3>Accedi una volta e mettilo online</h3><label class="check"><input type="checkbox"> fatto</label></div>
+            <div class="step-body">
+              <ol>
+                <li>Collega il portatile alla porta con la scritta <b>LAN</b> e un cavo dal router di casa alla porta con la scritta <b>WAN</b>.</li>
+                <li>Apri <a href="http://192.168.2.1/" rel="noopener">http://192.168.2.1</a>. Accedi come <code>root</code> con la password <code>password</code> (in alcune versioni va lasciata vuota).</li>
+                <li>Imposta una tua password di root: <b>System → Administration</b>. Resta solo tua; AirplaneMode riceve un suo accesso, con permessi limitati.</li>
+              </ol>
+            </div>
+          </li>
+          <li data-step="r6s-adapters">
+            <div class="step-head"><h3>Collega gli adattatori Wi-Fi</h3><label class="check"><input type="checkbox"> fatto</label></div>
+            <div class="step-body">
+              <p>Metti l'adattatore dell'hotspot (AWUS036ACM) nella porta blu <b>USB 3.0</b> e l'altro nella porta USB 2.0. In LuCI, <b>Network → Wireless</b> ora dovrebbe mostrare due radio. Non serve configurarle: ci pensa il pannello di amministrazione.</p>
+            </div>
+          </li>
+          <li data-step="r6s-install">
+            <div class="step-head"><h3>Avvia l'installer</h3><label class="check"><input type="checkbox"> fatto</label></div>
+            <div class="step-body">
+              <p>Apri un terminale (PowerShell su Windows, Terminale su Mac), collegati con <code class="ssh">ssh root@192.168.2.1</code> e incolla questo. Controlla il router, installa tutto (circa 3,8 GB) e alla fine mostra la tua password di amministratore.</p>
+              <div class="tool-slot"></div>
+            </div>
+          </li>
+          <li data-step="r6s-done">
+            <div class="step-head"><h3>Dai un nome al tuo hotspot</h3><label class="check"><input type="checkbox"> fatto</label></div>
+            <div class="step-body">
+              <p>Apri <a class="admin-link" href="http://airplane.mode:8080/admin/" rel="noopener">http://airplane.mode:8080/admin/</a>, accedi con la password mostrata dall'installer e dai al tuo hotspot un nome e una password. Da lì in poi i tuoi dispositivi se lo ricordano, ovunque tu vada.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- ===================== GL.iNet ===================== -->
+      <div class="guide" id="guide-glinet" role="tabpanel" aria-labelledby="tab-glinet" data-device="glinet" hidden>
+        <div class="callout"><b>Non ancora provato su un GL.iNet.</b> Lato software è la stessa API di OpenWrt, ma installare Docker sul firmware GL.iNet è la parte che più probabilmente andrà sistemata. Le segnalazioni sono benvenute.</div>
+        <ol class="steps">
+          <li data-step="gl-model">
+            <div class="step-head"><h3>Controlla il modello</h3><label class="check"><input type="checkbox"> fatto</label></div>
+            <div class="step-body">
+              <p>Ti serve un GL.iNet <b>arm64</b> (per esempio Flint 2 / GL-MT6000) con <b>1 GB di RAM</b>, più una chiavetta USB o una scheda SD da 8 GB o più per Docker. I modelli MIPS più vecchi non funzionano.</p>
+            </div>
+          </li>
+          <li data-step="gl-ssh">
+            <div class="step-head"><h3>Mettilo online e apri una shell</h3><label class="check"><input type="checkbox"> fatto</label></div>
+            <div class="step-body">
+              <p>Collega il router a internet dal suo pannello di amministrazione (<a href="http://192.168.8.1/" rel="noopener">http://192.168.8.1</a>). Poi, da un terminale: <code class="ssh">ssh root@192.168.8.1</code>, con la password del pannello di amministrazione.</p>
+            </div>
+          </li>
+          <li data-step="gl-docker">
+            <div class="step-head"><h3>Installa Docker</h3><label class="check"><input type="checkbox"> fatto</label></div>
+            <div class="step-body">
+              <p>Monta la memoria USB o SD (pannello di amministrazione GL.iNet → <b>Applications → Network Storage</b>), poi:</p>
+              <div class="cmd"><pre><span class="p">#</span> opkg update && opkg install dockerd docker docker-compose</pre><button class="copy" type="button">Copia</button></div>
+              <p>Fai salvare a Docker i suoi dati sulla memoria USB/SD (<code>data_root</code> in <code>/etc/config/dockerd</code>) e avvialo con <code>/etc/init.d/dockerd restart</code>. I nomi dei pacchetti possono cambiare da una versione del firmware all'altra.</p>
+            </div>
+          </li>
+          <li data-step="gl-install">
+            <div class="step-head"><h3>Avvia l'installer</h3><label class="check"><input type="checkbox"> fatto</label></div>
+            <div class="step-body">
+              <p>Incolla questo nella stessa shell. Controlla il router, installa tutto e alla fine mostra la tua password di amministratore.</p>
+              <div class="tool-slot"></div>
+            </div>
+          </li>
+          <li data-step="gl-done">
+            <div class="step-head"><h3>Dai un nome al tuo hotspot e scegli un solo ripetitore</h3><label class="check"><input type="checkbox"> fatto</label></div>
+            <div class="step-body">
+              <p>Apri <a class="admin-link" href="http://airplane.mode:8080/admin/" rel="noopener">http://airplane.mode:8080/admin/</a> e accedi. GL.iNet ha una sua pagina del ripetitore che modifica anche il Wi-Fi a monte, quindi usa quella oppure il pannello <b>Internet source</b> di AirplaneMode, non entrambi.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="apps">
+    <div class="wrap">
+      <div class="eyebrow">App sul router</div>
+      <h2 class="title">Cose da fare a 10.000 metri</h2>
+      <p class="sub">Dieci app finora. Ognuna è un progetto open source a sé e si aggiunge come container.</p>
+      <div class="apps">
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-darklight">
+          <img class="ico" src="../assets/icons/darklight.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>The Dark Light</h3><p>Avventure testuali narrate dal modello integrato, da soli o in gruppo dai telefoni di tutti: un faro al buio, un passo di montagna ghiacciato e una palude avvolta nella nebbia.</p><span class="tag">Giochi · usa il modello (non su GL.iNet)</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-gatechange">
+          <img class="ico" src="../assets/icons/gatechange.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>Gate Change</h3><p>Un gioco di carte veloce, a colori e numeri, da 2 a 8 giocatori. Sfida gli amici sull'hotspot, ognuno dal suo telefono, o i bot.</p><span class="tag">Giochi</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-passport">
+          <img class="ico" src="../assets/icons/passport.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>Passport</h3><p>Un gioco di carte deck-building a tema viaggi. Colleziona timbri e visti contro gli amici sull'hotspot, o contro i bot.</p><span class="tag">Giochi</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-wayfarer">
+          <img class="ico" src="../assets/icons/wayfarer.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>Wayfarer</h3><p>Quiz di viaggio dalla Travel Guide: capitali, valute, codici aeroportuali, frasi utili. Volo del giorno, modalità infinita, record.</p><span class="tag">Giochi</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-doom">
+          <img class="ico" src="../assets/icons/doom.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>Doom</h3><p>Il classico sparatutto, sul tuo dispositivo con i comandi touch. Freedoom, l'episodio aeroportuale Layover o i tuoi file WAD da Drop.</p><span class="tag">Giochi</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-cinema">
+          <img class="ico" src="../assets/icons/cinema.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>Cinema</h3><p>Guarda film e serie, e ascolta la musica, caricati su Drop. Ogni dispositivo riprende da dove si era fermato.</p><span class="tag">Intrattenimento</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-quickshot">
+          <img class="ico" src="../assets/icons/quickshot.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>QuickShot</h3><p>Un feed infinito con i video brevi della cartella QuickShot di Drop. Scorri, metti like, commenta.</p><span class="tag">Intrattenimento</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-couch">
+          <img class="ico" src="../assets/icons/couch.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>The Couch</h3><p>Un simulatore di terapeuta: parla di quello che ti passa per la testa con uno dei sei terapeuti, dall'Empatico gentile al Narcisista burlone, interpretati dal modello integrato. Non è una vera terapia.</p><span class="tag">Intrattenimento · usa il modello (non su GL.iNet)</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-guide">
+          <img class="ico" src="../assets/icons/guide.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>Travel Guide</h3><p>Tutta Wikivoyage, offline. Cerca qualsiasi destinazione, oppure fai una domanda e ricevi una risposta dalla guida.</p><span class="tag">Viaggi · usa il modello (non su GL.iNet)</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-drop">
+          <img class="ico" src="../assets/icons/drop.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>Drop</h3><p>Invia file e note tra tutti i telefoni, tablet e portatili sull'hotspot, e tieni da parte qualche film per il volo.</p><span class="tag">Strumenti</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>AirplaneMode. Open source, self-hosted, pensato per l'offline.</span>
+    <span><a href="https://github.com/jessewolcott/airplanemode">Piattaforma</a> · <a href="https://github.com/jessewolcott/airplanemode/blob/main/docs/hardware.md">Note sull'hardware</a> · <a href="../install.sh">install.sh</a> · <a href="https://github.com/jessewolcott/airplanemode-site">Questo sito</a></span>
+  </div>
+</footer>
+
+<!-- The config tool: one instance, moved into the selected device's install step. -->
+<template id="tool-tpl">
+  <div class="tool">
+    <div class="tool-head"><b>Il tuo comando di installazione</b><small class="tool-dev"></small></div>
+    <div class="tool-grid">
+      <div class="field">
+        <label for="t-lan">Indirizzo del router</label>
+        <input type="text" id="t-lan" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="rilevato automaticamente">
+        <div class="hint">Lascia vuoto, a meno che tu non abbia cambiato la sottorete LAN del router.</div>
+      </div>
+      <div class="field" style="display:grid;gap:12px;align-content:start">
+        <label class="toggle"><input type="checkbox" id="t-vpn" checked><span>VPN di casa<small>Installa WireGuard per collegarti a casa tramite un tunnel.</small></span></label>
+        <label class="toggle"><input type="checkbox" id="t-rebind" checked><span>Fai funzionare le pagine di accesso degli hotel<small>Disattiva la protezione dal DNS rebinding, che ne blocca molte.</small></span></label>
+      </div>
+      <details class="adv">
+        <summary>Avanzate</summary>
+        <div class="tool-grid">
+          <div class="field">
+            <label for="t-wan">Interfaccia WAN cablata</label>
+            <input type="text" id="t-wan" autocomplete="off" spellcheck="false" placeholder="wan">
+            <div class="hint">Solo se in LuCI → Network → Interfaces ha un altro nome.</div>
+          </div>
+          <div class="field">
+            <label for="t-dir">Cartella di installazione</label>
+            <input type="text" id="t-dir" autocomplete="off" spellcheck="false" placeholder="/opt/airplanemode">
+          </div>
+        </div>
+      </details>
+    </div>
+    <div class="cmd-label"><span>Sul router, come root:</span><a href="../install.sh" target="_blank" rel="noopener">leggi lo script</a></div>
+    <div class="cmd"><pre class="t-cmd"></pre><button class="copy" type="button">Copia</button></div>
+    <details class="does">
+      <summary>Cosa fa</summary>
+      <ul class="t-does"></ul>
+    </details>
+  </div>
+</template>
+
+<!-- Strings the script writes. tools/build_i18n.py translates the values for each language. -->
+<script type="application/json" id="ui-strings">
+{
+  "device.nanopi-r6s": "NanoPi R6S · profilo completo",
+  "device.glinet": "GL.iNet · profilo leggero",
+  "profile.nanopi-r6s": "NanoPi R6S (completo)",
+  "profile.glinet": "GL.iNet (leggero)",
+  "progress": "{n} di {total} fatti",
+  "copy": "Copia",
+  "copied": "Copiato",
+  "does.check": "Controlla che sia un router OpenWrt arm64 con Docker, online e con spazio sufficiente",
+  "does.download": "Scarica AirplaneMode in {dir} e applica il profilo {profile}",
+  "does.login": "Crea un accesso al router, {user}, che può cambiare le impostazioni Wi-Fi e nient'altro",
+  "does.name": "Fa puntare il nome {name} a {ip} e dà la precedenza all'Ethernet sul Wi-Fi",
+  "does.rebind-off": "Disattiva la protezione dal DNS rebinding così le pagine di accesso degli hotel si caricano",
+  "does.rebind-on": "Lascia attiva la protezione dal DNS rebinding",
+  "does.wireguard": "Installa WireGuard per la VPN di casa",
+  "does.no-wireguard": "Salta WireGuard",
+  "does.apps-model": "Scarica e avvia le app e il modello linguistico, poi controlla che il pannello di amministrazione possa gestire il router",
+  "does.apps": "Scarica e avvia le app, poi controlla che il pannello di amministrazione possa gestire il router",
+  "does.password": "Mostra la tua password di amministratore"
+}
+</script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

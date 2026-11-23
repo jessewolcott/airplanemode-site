@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0d0f12">
+<title>AirplaneMode：自带应用的旅行路由器</title>
+<meta name="description" content="一台自带应用的旅行路由器。酒店 Wi-Fi 只需登录一次，所有设备都能上网；断线自动重连；完全不联网也能运行游戏、工具和一个小型语言模型。">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta property="og:title" content="AirplaneMode">
+<meta property="og:description" content="一台自带应用的旅行路由器。">
+<meta property="og:image" content="https://airplanemode.xin/assets/landing-online.png">
+<meta property="og:url" content="https://airplanemode.xin/zh/">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="canonical" href="https://airplanemode.xin/zh/">
+<link rel="alternate" hreflang="en" href="https://airplanemode.xin/">
+<link rel="alternate" hreflang="es" href="https://airplanemode.xin/es/">
+<link rel="alternate" hreflang="fr" href="https://airplanemode.xin/fr/">
+<link rel="alternate" hreflang="it" href="https://airplanemode.xin/it/">
+<link rel="alternate" hreflang="zh-Hans" href="https://airplanemode.xin/zh/">
+<link rel="alternate" hreflang="ja" href="https://airplanemode.xin/ja/">
+<link rel="alternate" hreflang="vi" href="https://airplanemode.xin/vi/">
+<link rel="alternate" hreflang="x-default" href="https://airplanemode.xin/">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#"><img src="../assets/icon.svg" alt="" width="30" height="30"><b style="font-weight:inherit">Airplane<span>Mode</span></b></a>
+    <nav>
+      <a href="#features" class="hide-sm">功能</a>
+      <a href="#setup">安装</a>
+      <a href="#apps" class="hide-sm">应用</a>
+      <a class="gh" href="https://github.com/jessewolcott/airplanemode">GitHub</a>
+    </nav>
+    <details class="langs">
+      <summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><span class="sr">语言： </span><span id="lang-now">中文</span></summary>
+      <!-- The same on every page: each language in its own name. data-hint is the suggestion
+           shown to visitors whose browser prefers that language. -->
+      <ul translate="no">
+        <li><a href="../" hreflang="en" lang="en" data-hint="This page is also in English">English</a></li>
+        <li><a href="../es/" hreflang="es" lang="es" data-hint="Esta página también está en español">Español</a></li>
+        <li><a href="../fr/" hreflang="fr" lang="fr" data-hint="Cette page existe aussi en français">Français</a></li>
+        <li><a href="../it/" hreflang="it" lang="it" data-hint="Questa pagina è disponibile anche in italiano">Italiano</a></li>
+        <li><a href="../zh/" hreflang="zh-Hans" lang="zh-Hans" data-hint="本页面也有中文版">中文</a></li>
+        <li><a href="../ja/" hreflang="ja" lang="ja" data-hint="このページは日本語でも読めます">日本語</a></li>
+        <li><a href="../vi/" hreflang="vi" lang="vi" data-hint="Trang này cũng có bản tiếng Việt">Tiếng Việt</a></li>
+      </ul>
+    </details>
+  </div>
+</header>
+<div class="lang-hint" id="lang-hint" hidden><a href="../" translate="no">English</a><button type="button" aria-label="关闭">×</button></div>
+
+<main>
+  <div class="wrap hero">
+    <div>
+      <div class="eyebrow">开源旅行路由器</div>
+      <h1>你自己的 Wi-Fi，走到哪带到哪。<em>断网也照样起飞的应用。</em></h1>
+      <p class="lead">AirplaneMode 把一台小路由器变成你的私人热点。它替所有设备一次性登录酒店 Wi-Fi，断线自动重连，还能在完全没有网络的情况下运行游戏、工具和一个小型语言模型。</p>
+      <div class="btns">
+        <a class="btn primary" href="#setup">动手装一台 <span aria-hidden="true">→</span></a>
+        <a class="btn ghost" href="https://github.com/jessewolcott/airplanemode">阅读源代码</a>
+      </div>
+      <p class="note"><b>项目尚在早期。</b>所有功能都已在 Docker 中的真实 OpenWrt 上测试过，第一批硬件正在路上。</p>
+    </div>
+    <div class="phones" aria-hidden="true">
+      <img src="../assets/landing-signin.png" alt="" loading="lazy">
+      <img src="../assets/landing-online.png" alt="">
+      <img src="../assets/guide-ask.png" alt="" loading="lazy">
+    </div>
+  </div>
+
+  <section class="block" id="features">
+    <div class="wrap">
+      <div class="eyebrow">功能介绍</div>
+      <h2 class="title">为酒店、机场和飞机而生</h2>
+      <p class="sub">一切都在这台小盒子上运行。你的设备连到一个完全属于你的网络，其余的事交给它。</p>
+      <div class="features">
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1"/><path d="M2 9a14 14 0 0 1 20 0"/></svg>
+          <h3>一次登录，人人可用</h3>
+          <p>只要一个人在酒店的条款页面点同意，所有手机、笔记本和平板就都能上网。不用按设备付费。</p>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>
+          <h3>自动重连</h3>
+          <p>记住用过的网络并自动重新连接。插上房间里的网线，就会优先走有线网络。</p>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 10l3 3-3 3M13 16h3"/></svg>
+          <h3>没网也能用的应用</h3>
+          <p>在热点上和朋友打牌、旅行知识问答、文字冒险、电影、文件共享、离线版 Wikivoyage，还有内置在盒子里的语言模型。</p>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+          <h3>你的家庭 VPN</h3>
+          <p>粘贴一份 WireGuard 配置，所有流量都会经过它。酒店只能看到加密后的流量。</p>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg>
+          <h3>设备与流量</h3>
+          <p>查看谁在线、每个网络用了多少流量。给通宵放视频的平板按个暂停。</p>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          <h3>最小权限</h3>
+          <p>管理面板通过一个只能修改 Wi-Fi 设置的账号来控制路由器，从不使用 root。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="setup">
+    <div class="wrap">
+      <div class="eyebrow">安装</div>
+      <h2 class="title">开箱到热点，大约半小时</h2>
+      <p class="sub">选择你的路由器。边做边勾选步骤：这个页面会记住你的进度。</p>
+
+      <div class="devices" role="tablist" aria-label="选择路由器">
+        <button class="device" role="tab" id="tab-r6s" aria-controls="guide-r6s" aria-selected="true" data-device="nanopi-r6s">
+          <span class="name">NanoPi R6S <span class="pill full">完整版</span></span>
+          <span class="desc">全部功能，包括板载语言模型。需要两个 USB Wi-Fi 网卡。</span>
+        </button>
+        <button class="device" role="tab" id="tab-glinet" aria-controls="guide-glinet" aria-selected="false" data-device="glinet">
+          <span class="name">GL.iNet 旅行路由器 <span class="pill">精简版</span></span>
+          <span class="desc">1 GB 内存的 arm64 型号（例如 Flint 2）。自带 Wi-Fi。没有语言模型，因此不含 Dark Light、Travel Guide 和 Couch。</span>
+        </button>
+      </div>
+
+      <div class="progress"><span id="progText">已完成 0 / 0</span><span class="bar"><i id="progBar"></i></span><button class="check" id="reset" type="button" style="background:none;border:0;font:inherit;color:inherit">重置</button></div>
+
+      <!-- ===================== NanoPi R6S ===================== -->
+      <div class="guide" id="guide-r6s" role="tabpanel" aria-labelledby="tab-r6s" data-device="nanopi-r6s">
+        <ol class="steps">
+          <li data-step="r6s-parts">
+            <div class="step-head"><h3>准备硬件</h3><label class="check"><input type="checkbox"> 完成</label></div>
+            <div class="step-body">
+              <table class="parts">
+                <tr><td>NanoPi R6S, 8 GB</td><td>主机本体。选带金属外壳的版本：外壳就是散热片。</td></tr>
+                <tr><td>USB Wi-Fi 网卡 × 2</td><td>R6S 本身没有 Wi-Fi。只能用 MediaTek 芯片的网卡：例如热点用 ALFA AWUS036ACM（MT7612U），连酒店网络用 AWUS036ACHM（MT7610U）。</td></tr>
+                <tr><td>5 V / 3 A USB-C 电源</td><td>或者支持 USB-C PD 的充电宝。</td></tr>
+                <tr><td>8 GB 以上的 microSD 卡</td><td>只在刷机时用一次。</td></tr>
+                <tr><td>短 USB 延长线</td><td>可选。让其中一个网卡离外壳远一点。</td></tr>
+              </table>
+            </div>
+          </li>
+          <li data-step="r6s-flash">
+            <div class="step-head"><h3>把 FriendlyWrt 刷入 eMMC</h3><label class="check"><input type="checkbox"> 完成</label></div>
+            <div class="step-body">
+              <p>FriendlyWrt 是 FriendlyElec 基于 OpenWrt 定制的系统，内置 Docker。</p>
+              <ol>
+                <li>打开<a href="http://download.friendlyelec.com/NanoPiR6S" rel="noopener">FriendlyElec 的下载页面</a> → <code>01_Official images</code> → <code>02_SD-to-eMMC images</code>，下载文件名类似 <code>rk3588-eflasher-friendlywrt-…-docker-….img.gz</code> 的文件。<b>请选文件名里带 <code>docker</code> 的那个。</b></li>
+                <li>用 <a href="https://etcher.balena.io/" rel="noopener">balenaEtcher</a> 把它写入 microSD 卡（可以直接用 <code>.gz</code> 文件）。在 Windows 上，FriendlyElec 推荐的工具是 Win32 Disk Imager：需要先解压镜像。</li>
+                <li>把卡插进 R6S 并通电，它会自动安装到 eMMC。留意红色的 <b>SYS</b> 指示灯：</li>
+              </ol>
+              <div class="leds">
+                <span class="led"><i class="fast"></i>快闪</span><span>正在安装，需要几分钟</span>
+                <span class="led"><i class="slow"></i><i class="g"></i>慢闪 + 绿灯</span><span>完成：SYS 慢闪，WAN/LAN 灯常亮</span>
+              </div>
+              <ol start="4"><li>拔掉电源，<b>取出存储卡</b>，再重新通电。现在它会从 eMMC 启动。</li></ol>
+            </div>
+          </li>
+          <li data-step="r6s-login">
+            <div class="step-head"><h3>登录一次并连上网络</h3><label class="check"><input type="checkbox"> 完成</label></div>
+            <div class="step-body">
+              <ol>
+                <li>把笔记本接到标有 <b>LAN</b> 的网口，再用一根网线把家里的路由器接到标有 <b>WAN</b> 的网口。</li>
+                <li>打开 <a href="http://192.168.2.1/" rel="noopener">http://192.168.2.1</a>。用户名 <code>root</code>，密码 <code>password</code>（有些版本留空即可）。</li>
+                <li>设置你自己的 root 密码：<b>System → Administration</b>。这个密码只归你所有；AirplaneMode 会使用自己的受限账号。</li>
+              </ol>
+            </div>
+          </li>
+          <li data-step="r6s-adapters">
+            <div class="step-head"><h3>插上 Wi-Fi 网卡</h3><label class="check"><input type="checkbox"> 完成</label></div>
+            <div class="step-body">
+              <p>把热点用的网卡（AWUS036ACM）插到蓝色的 <b>USB 3.0</b> 口，另一个插到 USB 2.0 口。这时在 LuCI 的 <b>Network → Wireless</b> 里应该能看到两个无线设备。不用手动设置：管理面板会搞定。</p>
+            </div>
+          </li>
+          <li data-step="r6s-install">
+            <div class="step-head"><h3>运行安装程序</h3><label class="check"><input type="checkbox"> 完成</label></div>
+            <div class="step-body">
+              <p>打开终端（Windows 上用 PowerShell，Mac 上用“终端”），用 <code class="ssh">ssh root@192.168.2.1</code> 连接，然后粘贴下面的命令。它会检查路由器、安装所有组件（约 3.8 GB），最后显示你的管理员密码。</p>
+              <div class="tool-slot"></div>
+            </div>
+          </li>
+          <li data-step="r6s-done">
+            <div class="step-head"><h3>给热点起个名字</h3><label class="check"><input type="checkbox"> 完成</label></div>
+            <div class="step-body">
+              <p>打开 <a class="admin-link" href="http://airplane.mode:8080/admin/" rel="noopener">http://airplane.mode:8080/admin/</a>，用安装程序显示的密码登录，然后给热点设好名称和密码。之后无论走到哪里，你的设备都会记住它。</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- ===================== GL.iNet ===================== -->
+      <div class="guide" id="guide-glinet" role="tabpanel" aria-labelledby="tab-glinet" data-device="glinet" hidden>
+        <div class="callout"><b>还没在 GL.iNet 上试过。</b>软件部分用的是同一套 OpenWrt API，但在 GL.iNet 固件上安装 Docker 这一步最可能需要调整。欢迎反馈。</div>
+        <ol class="steps">
+          <li data-step="gl-model">
+            <div class="step-head"><h3>确认型号</h3><label class="check"><input type="checkbox"> 完成</label></div>
+            <div class="step-body">
+              <p>你需要一台 <b>arm64</b> 的 GL.iNet（例如 Flint 2 / GL-MT6000），带 <b>1 GB 内存</b>，外加一个 8 GB 或更大的 U 盘或 SD 卡给 Docker 用。较老的 MIPS 型号不行。</p>
+            </div>
+          </li>
+          <li data-step="gl-ssh">
+            <div class="step-head"><h3>联网并打开命令行</h3><label class="check"><input type="checkbox"> 完成</label></div>
+            <div class="step-body">
+              <p>在路由器的管理面板（<a href="http://192.168.8.1/" rel="noopener">http://192.168.8.1</a>）里把它连上互联网。然后在终端里执行 <code class="ssh">ssh root@192.168.8.1</code>，密码就是管理面板的密码。</p>
+            </div>
+          </li>
+          <li data-step="gl-docker">
+            <div class="step-head"><h3>安装 Docker</h3><label class="check"><input type="checkbox"> 完成</label></div>
+            <div class="step-body">
+              <p>挂载 U 盘或 SD 卡（GL.iNet 管理面板 → <b>Applications → Network Storage</b>），然后运行：</p>
+              <div class="cmd"><pre><span class="p">#</span> opkg update && opkg install dockerd docker docker-compose</pre><button class="copy" type="button">复制</button></div>
+              <p>把 Docker 的数据目录指向 U 盘或 SD 卡（<code>data_root</code>，位于 <code>/etc/config/dockerd</code>），再用 <code>/etc/init.d/dockerd restart</code> 启动它。不同固件版本的软件包名可能不同。</p>
+            </div>
+          </li>
+          <li data-step="gl-install">
+            <div class="step-head"><h3>运行安装程序</h3><label class="check"><input type="checkbox"> 完成</label></div>
+            <div class="step-body">
+              <p>把它粘贴到同一个命令行里。它会检查路由器、安装所有组件，最后显示你的管理员密码。</p>
+              <div class="tool-slot"></div>
+            </div>
+          </li>
+          <li data-step="gl-done">
+            <div class="step-head"><h3>给热点起名，并只用一种中继方式</h3><label class="check"><input type="checkbox"> 完成</label></div>
+            <div class="step-body">
+              <p>打开 <a class="admin-link" href="http://airplane.mode:8080/admin/" rel="noopener">http://airplane.mode:8080/admin/</a> 并登录。GL.iNet 有自己的中继页面，也会修改上游 Wi-Fi，所以它和 AirplaneMode 的 <b>Internet source</b> 面板只能二选一，不要同时使用。</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="apps">
+    <div class="wrap">
+      <div class="eyebrow">盒子里的应用</div>
+      <h2 class="title">万米高空的消遣</h2>
+      <p class="sub">目前共有十款应用。每一款都是独立的开源项目，以容器形式接入。</p>
+      <div class="apps">
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-darklight">
+          <img class="ico" src="../assets/icons/darklight.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>The Dark Light</h3><p>由内置语言模型讲述的文字冒险，可以单人玩，也可以大家用各自的手机组队：漆黑的灯塔、冰封的山口，还有雾气笼罩的沼泽。</p><span class="tag">游戏 · 使用语言模型（GL.iNet 不支持）</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-gatechange">
+          <img class="ico" src="../assets/icons/gatechange.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>Gate Change</h3><p>节奏飞快的颜色加数字纸牌游戏，支持 2 到 8 人。在热点上用各自的手机和朋友对战，或者和机器人玩。</p><span class="tag">游戏</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-passport">
+          <img class="ico" src="../assets/icons/passport.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>Passport</h3><p>旅行主题的卡组构筑纸牌游戏。在热点上和朋友或机器人比拼，收集印章和签证。</p><span class="tag">游戏</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-wayfarer">
+          <img class="ico" src="../assets/icons/wayfarer.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>Wayfarer</h3><p>取材自 Travel Guide 的旅行知识问答：首都、货币、机场代码、常用短语。每日航班、无尽模式、最高分。</p><span class="tag">游戏</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-doom">
+          <img class="ico" src="../assets/icons/doom.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>Doom</h3><p>经典射击游戏，用触屏直接在你的设备上玩。可以玩 Freedoom、机场主题的 Layover 章节，或者从 Drop 载入你自己的 WAD。</p><span class="tag">游戏</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-cinema">
+          <img class="ico" src="../assets/icons/cinema.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>Cinema</h3><p>观看传到 Drop 上的电影和剧集，播放音乐。每台设备都能从上次停下的地方接着看。</p><span class="tag">娱乐</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-quickshot">
+          <img class="ico" src="../assets/icons/quickshot.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>QuickShot</h3><p>Drop 里 QuickShot 文件夹中短视频的无限信息流。上滑、点赞、评论。</p><span class="tag">娱乐</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-couch">
+          <img class="ico" src="../assets/icons/couch.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>The Couch</h3><p>心理治疗师模拟器：和六位治疗师中的一位聊聊心事，从温柔的“共情者”到爱开玩笑的“自恋者”，都由内置语言模型扮演。这不是真正的心理治疗。</p><span class="tag">娱乐 · 使用语言模型（GL.iNet 不支持）</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-guide">
+          <img class="ico" src="../assets/icons/guide.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>Travel Guide</h3><p>离线版的完整 Wikivoyage。查任何目的地，或者提个问题，从指南里得到答案。</p><span class="tag">旅行 · 使用语言模型（GL.iNet 不支持）</span></span>
+        </a>
+        <a class="app" href="https://github.com/jessewolcott/airplanemode-drop">
+          <img class="ico" src="../assets/icons/drop.svg" alt="" width="46" height="46" loading="lazy">
+          <span><h3>Drop</h3><p>在热点上的所有手机、平板和笔记本之间传送文件和便签，还能存几部电影留着飞机上看。</p><span class="tag">工具</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>AirplaneMode。开源、自托管、离线优先。</span>
+    <span><a href="https://github.com/jessewolcott/airplanemode">平台</a> · <a href="https://github.com/jessewolcott/airplanemode/blob/main/docs/hardware.md">硬件说明</a> · <a href="../install.sh">install.sh</a> · <a href="https://github.com/jessewolcott/airplanemode-site">本站源码</a></span>
+  </div>
+</footer>
+
+<!-- The config tool: one instance, moved into the selected device's install step. -->
+<template id="tool-tpl">
+  <div class="tool">
+    <div class="tool-head"><b>你的安装命令</b><small class="tool-dev"></small></div>
+    <div class="tool-grid">
+      <div class="field">
+        <label for="t-lan">路由器地址</label>
+        <input type="text" id="t-lan" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="自动检测">
+        <div class="hint">除非你改过路由器的 LAN 子网，否则留空。</div>
+      </div>
+      <div class="field" style="display:grid;gap:12px;align-content:start">
+        <label class="toggle"><input type="checkbox" id="t-vpn" checked><span>家庭 VPN<small>安装 WireGuard，方便你通过隧道连回家里的网络。</small></span></label>
+        <label class="toggle"><input type="checkbox" id="t-rebind" checked><span>让酒店登录页面正常打开<small>关闭 DNS 重绑定保护，很多这类页面都会被它拦截。</small></span></label>
+      </div>
+      <details class="adv">
+        <summary>高级选项</summary>
+        <div class="tool-grid">
+          <div class="field">
+            <label for="t-wan">有线 WAN 接口</label>
+            <input type="text" id="t-wan" autocomplete="off" spellcheck="false" placeholder="wan">
+            <div class="hint">仅当 LuCI → Network → Interfaces 里用的是别的名字时才需要填写。</div>
+          </div>
+          <div class="field">
+            <label for="t-dir">安装目录</label>
+            <input type="text" id="t-dir" autocomplete="off" spellcheck="false" placeholder="/opt/airplanemode">
+          </div>
+        </div>
+      </details>
+    </div>
+    <div class="cmd-label"><span>在路由器上以 root 身份运行：</span><a href="../install.sh" target="_blank" rel="noopener">查看脚本</a></div>
+    <div class="cmd"><pre class="t-cmd"></pre><button class="copy" type="button">复制</button></div>
+    <details class="does">
+      <summary>功能介绍</summary>
+      <ul class="t-does"></ul>
+    </details>
+  </div>
+</template>
+
+<!-- Strings the script writes. tools/build_i18n.py translates the values for each language. -->
+<script type="application/json" id="ui-strings">
+{
+  "device.nanopi-r6s": "NanoPi R6S · 完整配置",
+  "device.glinet": "GL.iNet · 精简配置",
+  "profile.nanopi-r6s": "NanoPi R6S（完整版）",
+  "profile.glinet": "GL.iNet（精简版）",
+  "progress": "已完成 {n} / {total}",
+  "copy": "复制",
+  "copied": "已复制",
+  "does.check": "检查这是一台装有 Docker 的 arm64 OpenWrt 路由器，已联网且空间足够",
+  "does.download": "把 AirplaneMode 下载到 {dir}，并应用“{profile}”配置",
+  "does.login": "创建路由器账号 {user}，它只能修改 Wi-Fi 设置，别的都动不了",
+  "does.name": "让域名 {name} 指向 {ip}，并让有线网络优先于 Wi-Fi",
+  "does.rebind-off": "关闭 DNS 重绑定保护，让酒店登录页面能够加载",
+  "does.rebind-on": "保留 DNS 重绑定保护",
+  "does.wireguard": "安装 WireGuard，用于家庭 VPN",
+  "does.no-wireguard": "不安装 WireGuard",
+  "does.apps-model": "下载并启动各个应用和语言模型，然后检查管理面板能否控制路由器",
+  "does.apps": "下载并启动各个应用，然后检查管理面板能否控制路由器",
+  "does.password": "显示你的管理员密码"
+}
+</script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

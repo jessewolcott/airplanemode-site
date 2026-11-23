@@ -18,10 +18,26 @@ jobs:
             -v "$PWD/tests/docker-stub:/usr/bin/docker:ro" \
             openwrt/rootfs:aarch64_generic-24.10.4 sh /src/tests/openwrt-run.sh
 
-  # GitHub Pages (platform decision 0019): only after the installer checks pass, only from main,
-  # and only the files the site needs (not tests/, llm/ or the notes).
+  # The translated homepages (es fr it zh ja vi) must match English index.html: same
+  # structure, commands and links, every string translated, and generated pages up to date.
+  i18n:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Translations in step with English (tools/check_i18n.py)
+        run: python3 tools/check_i18n.py --apps /nonexistent
+      # Warning only: the platform can change apps.json before this site catches up.
+      - name: App cards vs the platform's portal/apps.json
+        continue-on-error: true
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/jessewolcott/airplanemode/main/portal/apps.json -o "$RUNNER_TEMP/apps.json"
+          python3 tools/check_i18n.py --apps "$RUNNER_TEMP/apps.json"
+
+  # GitHub Pages (platform decision 0019): only after the installer and translation checks
+  # pass, only from main, and only the files the site needs (not tests/, tools/, i18n/, llm/
+  # or the notes).
   pages:
-    needs: installer
+    needs: [installer, i18n]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     permissions:
@@ -38,7 +54,7 @@ jobs:
       - name: Stage the site
         run: |
           mkdir _site
-          cp -r index.html install.sh assets CNAME _site/
+          cp -r index.html install.sh assets CNAME es fr it zh ja vi _site/
       - uses: actions/configure-pages@v5
       # One artifact name per attempt: re-running a failed deploy would otherwise find two.
       - uses: actions/upload-pages-artifact@v4
