@@ -28,11 +28,11 @@ landing page (`../airplanemode/portal/index.html`); keep them in step.
 | hero | `57-73` | eyebrow, h1, lead, buttons (`#setup`, GitHub), "Early days" note, three phone screenshots (`landing-signin`, `landing-online`, `guide-ask`), decorative (`aria-hidden`) |
 | `#features` | `75-113` | six feature cards with inline SVG icons |
 | `#setup` | `115-237` | device tabs, progress bar, two guides (R6S, GL.iNet) |
-| `#apps` | `239-287` | cards linking to the ten app repos, mirroring the platform's `portal/apps.json` (names, descriptions, icons in `assets/icons/`) |
-| footer | `290-295` | links: platform, `docs/hardware.md`, `install.sh` (relative), this repo |
-| `<template id="tool-tpl">` | `298-333` | the config tool |
-| `#ui-strings` | `336-357` | the page's UI strings as JSON (translated per language, see i18n.md) |
-| script | `358` | `<script src="assets/site.js">`: everything interactive (shared by all languages) |
+| `#apps` | `239-291` | cards linking to the eleven app repos, mirroring the platform's `portal/apps.json` (names, descriptions, icons in `assets/icons/`) |
+| footer | `294-299` | links: platform, `docs/hardware.md`, `install.sh` (relative), this repo |
+| `<template id="tool-tpl">` | `302-337` | the config tool |
+| `#ui-strings` | `340-361` | the page's UI strings as JSON (translated per language, see i18n.md) |
+| script | `362` | `<script src="assets/site.js">`: everything interactive (shared by all languages) |
 
 `assets/drop.png` and `assets/admin-vpn-devices.png` exist but are not referenced by the
 page today.
